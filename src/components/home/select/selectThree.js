@@ -97,7 +97,7 @@ export default function SelectThree(){
                                         </div>
 
                                         <div className="col-lg-3 col-md-6 col-12">
-                                            <input type="submit" id="search" name="search" style={{height: '48px'}} className="btn btn-primary searchbtn w-100" value="Search"/>
+                                            <input type="submit" id="search" name="بحث" style={{height: '48px'}} className="btn btn-primary searchbtn w-100" value="Search"/>
                                         </div>
                                     </div>
                                 </div>
@@ -111,17 +111,17 @@ export default function SelectThree(){
                                     <div className="row g-lg-0">
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Search :</label>
+                                                <label className="form-label fs-6">الموقع:</label>
                                                 <div className="filter-search-form position-relative filter-border">
                                                     <FiSearch className="fea icon-ex-md icons"/>
-                                                    <input name="name" type="text" id="job-keyword" className="form-control filter-input-box bg-light border-0" placeholder="Search your keaywords"/>
+                                                    <input name="name" type="text" id="job-keyword" className="form-control filter-input-box bg-light border-0" placeholder="ادخل الكلمات المفتاحية"/>
                                                 </div>
                                             </div>
                                         </div>
                                         
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Select Categories :</label>
+                                                <label className="form-label fs-6"> اختر الفئة:</label>
                                                 <div className="filter-search-form position-relative filter-border bg-light">
                                                     <FiHome className="fea icon-ex-md icons"/>
                                                     <Select className="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" options={category} />
@@ -131,7 +131,7 @@ export default function SelectThree(){
 
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Min Price :</label>
+                                                <label className="form-label fs-6">السعر الادناء :</label>
                                                 <div className="filter-search-form position-relative filter-border bg-light">
                                                     <FiDollarSign className="fea icon-ex-md icons"/>
                                                     <Select className="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" options={price} />
@@ -141,7 +141,7 @@ export default function SelectThree(){
 
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Max Price :</label>
+                                                <label className="form-label fs-6">الاسعر الاعلاء  :</label>
                                                 <div className="filter-search-form position-relative filter-border bg-light">
                                                     <FiDollarSign className="fea icon-ex-md icons"/>
                                                     <Select className="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" options={price} />
@@ -150,7 +150,7 @@ export default function SelectThree(){
                                         </div>
 
                                         <div className="col-lg-3 col-md-6 col-12">
-                                            <input type="submit" id="search" name="search" style={{height: '48px'}} className="btn btn-primary searchbtn w-100" value="Search"/>
+                                            <input type="submit" id="search" name="بحث" style={{height: '48px'}} className="btn btn-primary searchbtn w-100" value="Search"/>
                                         </div>
                                     </div>
                                 </div>
@@ -164,17 +164,17 @@ export default function SelectThree(){
                                     <div className="row g-lg-0">
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Search :</label>
+                                                <label className="form-label fs-6">الموقع:</label>
                                                 <div className="filter-search-form position-relative filter-border">
                                                     <FiSearch className="fea icon-ex-md icons"/>
-                                                    <input name="name" type="text" id="job-keyword" className="form-control filter-input-box bg-light border-0" placeholder="Search your keaywords"/>
+                                                    <input name="name" type="text" id="job-keyword" className="form-control filter-input-box bg-light border-0" placeholder="ادخل الكلمات المفتاحية"/>
                                                 </div>
                                             </div>
                                         </div>
                                         
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Select Categories:</label>
+                                                <label className="form-label fs-6"> اختر الفئة:</label>
                                                 <div className="filter-search-form position-relative filter-border bg-light">
                                                     <FiHome className="fea icon-ex-md icons"/>
                                                     <Select className="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" options={category} />
@@ -184,7 +184,7 @@ export default function SelectThree(){
 
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Min Price :</label>
+                                                <label className="form-label fs-6">السعر الادناء :</label>
                                                 <div className="filter-search-form position-relative filter-border bg-light">
                                                     <FiDollarSign className="fea icon-ex-md icons"/>
                                                     <Select className="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" options={price} />
@@ -194,7 +194,7 @@ export default function SelectThree(){
 
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">
-                                                <label className="form-label fs-6">Max Price :</label>
+                                                <label className="form-label fs-6">الاسعر الاعلاء  :</label>
                                                 <div className="filter-search-form position-relative filter-border bg-light">
                                                     <FiDollarSign className="fea icon-ex-md icons"/>
                                                     <Select className="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" options={price} />
@@ -203,7 +203,7 @@ export default function SelectThree(){
                                         </div>
 
                                         <div className="col-lg-3 col-md-6 col-12">
-                                            <input type="submit" id="search" name="search" style={{height: '48px'}} className="btn btn-primary searchbtn w-100" value="Search"/>
+                                            <input type="submit" id="search" name="بحث" style={{height: '48px'}} className="btn btn-primary searchbtn w-100" value="Search"/>
                                         </div>
                                     </div>
                                 </div>
