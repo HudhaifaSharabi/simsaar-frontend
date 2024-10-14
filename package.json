@@ -27,6 +27,7 @@
     "react-select": "^5.8.1",
     "react-type-animation": "^3.2.0",
     "sass": "^1.79.5",
+    "simsaar-frontend": "file:",
     "three": "^0.169.0",
     "tiny-slider": "^2.9.4",
     "tiny-slider-react": "^0.5.7"
