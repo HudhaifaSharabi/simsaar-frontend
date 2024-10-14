@@ -18,7 +18,7 @@ const RoomPage = ({ params }) => {
     // Fetch room and hotspots from API
     const fetchRoomData = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/rooms?id=${id}`);
+        const res = await fetch(`${process.env.SERVER_API}/api/rooms?id=${id}`);
         if (!res.ok) {
           throw new Error('Room not found');
         }
