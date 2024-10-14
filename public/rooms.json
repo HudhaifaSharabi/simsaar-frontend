@@ -1,0 +1,58 @@
+{
+    "rooms": [
+      {
+        "id": 1,
+        "name": "Room 1",
+        "image": "/images/room1_360.jpg",
+        "hotspots": [
+          {
+            "name": "Go to Room 2",
+            "position": [1, -1, -3],
+            "scene": {
+              "backgroundImage": "/images/room101.jpg",
+              "roomId": 2
+            }
+          },
+          {
+            "name": "Go to Room 3",
+            "position": [-2, -1, 0],
+            "scene": {
+              "backgroundImage": "/images/room102.jpg",
+              "roomId": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Room 2",
+        "image": "/images/room2_360.jpg",
+        "hotspots": [
+          {
+            "name": "Go to Room 1",
+            "position": [2, -1, 0],
+            "scene": {
+              "backgroundImage": "/images/room103.jpg",
+              "roomId": 1
+            }
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Room 3",
+        "image": "/images/room3_360.jpg",
+        "hotspots": [
+          {
+            "name": "Go to Room 1",
+            "position": [1, -1, -2],
+            "scene": {
+              "backgroundImage": "/images/room101.jpg",
+              "roomId": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+  

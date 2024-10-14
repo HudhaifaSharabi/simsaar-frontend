@@ -1,0 +1,39 @@
+.roomContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* لضمان أن الـ Sidebar يظهر في الأسفل */
+  }
+  
+  .viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* التأكد من أن العرض يظهر في الخلف */
+    overflow: hidden;
+  }
+  
+  .viewer img {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .sidebarContainer {
+    position: absolute;
+    bottom: 0; /* يظهر الـ sidebar في أسفل الشاشة */
+    z-index: 2; /* للتأكد من أنه فوق الـ 360° viewer */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية نصف شفافة للـ sidebar */
+  }
+  
