@@ -1,7 +1,9 @@
 import { Tajawal } from 'next/font/google'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import "@/assets/scss/style.scss"
 import "@/assets/css/materialdesignicons.min.css"
+import { DataProvider } from '@/context/DataContext';
 
 const league = Tajawal({ 
   subsets: ['latin'],
@@ -17,7 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar">
-      <body className={league.variable}>{children}</body>
+      <body className={league.variable}>
+        <DataProvider>{children}</DataProvider>
+      </body>
     </html>
   )
 }

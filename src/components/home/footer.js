@@ -15,8 +15,8 @@ export default function Footer(){
                         <div className="footer-py-60 footer-border">
                             <div className="row">
                                 <div className="col-lg-5 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                                    <Link href="#" className="logo-footer">
-                                        <Image src='/images/logo-dark.png' width={132} height={32} alt=""/>
+                                    <Link href="/" className="logo-footer">
+                                        <Image src='/images/logo.png' width={132} height={32} alt=""/>
                                     </Link>
                                     <p className="mt-4">منصة رائعة لحجز فندق شاليه او شقه مفروشه او لشراء وبيع وتأجير عقاراتك دون أي وسيط أو عمولات.</p>
                                     <ul className="list-unstyled social-icon foot-social-icon mb-0 mt-4">

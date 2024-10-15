@@ -18,7 +18,7 @@ const RoomPage = ({ params }) => {
     // Fetch room and hotspots from API
     const fetchRoomData = async () => {
       try {
-        const res = await fetch(`https://simsaar-backend.vercel.app/api/rooms?id=${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/api/rooms?id=${id}`);
         if (!res.ok) {
           throw new Error('Room not found');
         }

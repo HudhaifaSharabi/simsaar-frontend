@@ -7,7 +7,7 @@ const Hotspot = ({ hotspot, onClick }) => {
   const iconTexture = useTexture('/hotspot-icon.png');
   
   // حالة لتخزين حجم الـ hotspot
-  const [scale, setScale] = useState(2.0); // حجم البداية للـ hotspot
+  const [scale, setScale] = useState(1.5); // حجم البداية للـ hotspot
 
   return (
     <sprite
@@ -15,8 +15,8 @@ const Hotspot = ({ hotspot, onClick }) => {
       ref={hotspotRef}
       onClick={() => onClick(hotspot.targetRoom)}
       scale={[scale, scale, scale]}  // تطبيق الحجم على الـ hotspot
-      onPointerOver={() => setScale(2.5)}  // تكبير الحجم عند مرور الماوس
-      onPointerOut={() => setScale(2.0)}  // إعادة الحجم عند إزالة الماوس
+      onPointerOver={() => setScale(2.0)}  // تكبير الحجم عند مرور الماوس
+      onPointerOut={() => setScale(1.5)}  // إعادة الحجم عند إزالة الماوس
     >
       <spriteMaterial 
         map={iconTexture} 

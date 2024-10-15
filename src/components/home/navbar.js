@@ -120,14 +120,14 @@ export default function Navbar({navClass,logolight,menuClass}){
                 {logolight === true ? 
                     <Link className="logo" href="/">
                         <span className="logo-light-mode">
-                            <Image src='/images/logo-dark.png' width={132} height={32} className="l-dark" alt=""/>
-                            <Image src='/images/logo-light.png' width={132} height={32} className="l-light" alt=""/>
+                            <Image src='/images/logo.png' width={132} height={32} className="l-dark" alt=""/>
+                            <Image src='/images/logo.png' width={132} height={32} className="l-light" alt=""/>
                         </span>
                         <Image src='/images/logo-light.png' width={132} height={32} className="logo-dark-mode" alt=""/>
                     </Link> :
                     <Link className="logo" href="/">
-                        <Image src='/images/logo-dark.png' width={132} height={32} className="logo-light-mode" alt=""/>
-                        <Image src='/images/logo-light.png' width={132} height={32} className="logo-dark-mode" alt=""/>
+                        <Image src='/images/logo.png' width={132} height={32} className="logo-light-mode" alt=""/>
+                        <Image src='/images/logo.png' width={132} height={32} className="logo-dark-mode" alt=""/>
                     </Link>
                 }
 

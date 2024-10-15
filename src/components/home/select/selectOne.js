@@ -2,14 +2,14 @@
 import dynamic from "next/dynamic";
 const Select = dynamic(()=>import('react-select'),{ssr:false})
 
-import {FiDollarSign, FiHome,FiSearch} from "../../assets/icons/vander"
+import {FiDollarSign, FiHome,FiSearch} from "@/assets/icons/vander"
 
 export default function SelectOne(){
     let categories = [
-        { value: '1', label: 'Houses' },
-        { value: '2', label: 'Apartment' },
-        { value: '3', label: 'Offices' },
-        { value: '4', label: 'Townhome' },
+        { value: '1', label: 'فنادق' },
+        { value: '2', label: 'شاليهات' },
+        { value: '3', label: 'شقق مفرشه' },
+        { value: '4', label: 'عقارات' },
     ]
     let price = [
         { value: '1', label: '500' },
@@ -24,7 +24,7 @@ export default function SelectOne(){
     return(
         <>
         <form className="card-body text-start">
-            <div className="registration-form text-dark text-start">
+            <div className="registration-form text-dark text-end  rtl-direction">
                 <div className="row g-lg-0">
                     <div className="col-lg-3 col-md-6 col-12">
                         <div className="mb-lg-0 mb-3">
