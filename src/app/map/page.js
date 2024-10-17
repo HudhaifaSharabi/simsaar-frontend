@@ -27,6 +27,7 @@ const mapContainerStyle = {
   height: "calc(100vh - 80px)", // Adjust height to fill the screen, minus navbar height
   width: "100%",
 };
+const libraries = ["places"]; // Specify the libraries you need
 
 const center = {
   lat: 15.3597304,
@@ -176,6 +177,7 @@ export default function IndexFour() {
       <Navbar navClass="defaultscroll sticky" menuClass="navigation-menu" />
       <LoadScript
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+        libraries
       >
         <section className="position-relative mt-5 pt-4">
           <div className="container-fluid">
