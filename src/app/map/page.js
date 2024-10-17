@@ -177,7 +177,7 @@ export default function IndexFour() {
       <Navbar navClass="defaultscroll sticky" menuClass="navigation-menu" />
       <LoadScript
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
-        libraries
+        libraries={["places"]}
       >
         <section className="position-relative mt-5 pt-4">
           <div className="container-fluid">
