@@ -115,7 +115,7 @@ export default function Navbar({navClass,logolight,menuClass}){
         }
     return(
         <>
-         <header id="topnav" className={`${scroll ? "nav-sticky" :""} ${navClass}`}>
+         <header id="topnav" className={`${scroll ? "nav-sticky" :""} ${navClass} rtl`}>
             <div className="container">
                 {logolight === true ? 
                     <Link className="logo" href="/">
@@ -123,7 +123,7 @@ export default function Navbar({navClass,logolight,menuClass}){
                             <Image src='/images/logo.png' width={132} height={32} className="l-dark" alt=""/>
                             <Image src='/images/logo.png' width={132} height={32} className="l-light" alt=""/>
                         </span>
-                        <Image src='/images/logo-light.png' width={132} height={32} className="logo-dark-mode" alt=""/>
+                        <Image src='/images/logo.png' width={132} height={32} className="logo-dark-mode" alt=""/>
                     </Link> :
                     <Link className="logo" href="/">
                         <Image src='/images/logo.png' width={132} height={32} className="logo-light-mode" alt=""/>
@@ -171,9 +171,9 @@ export default function Navbar({navClass,logolight,menuClass}){
                     <ul className={menuClass}>
                         <li><Link href="/" className="sub-menu-item">الرئيسة</Link></li>
 
-                        <li><Link href="/buy" className="sub-menu-item">القائمة</Link></li>
+                        <li><Link href="/grid" className="sub-menu-item">القائمة</Link></li>
                         
-                        <li><Link href="/sell" className="sub-menu-item">الخريطه</Link></li>
+                        <li><Link href="/map" className="sub-menu-item">الخريطه</Link></li>
         
 
                         

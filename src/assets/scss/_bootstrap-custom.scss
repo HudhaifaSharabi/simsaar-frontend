@@ -8,8 +8,41 @@
 .rtl-direction{
     direction: rtl;
 }
+.rtl {
+    direction: rtl;
+    text-align: right; /* Align text to the right */
+}
+
+.rtl .property {
+    margin-right: 0; /* Reset margin for RTL */
+    margin-left: 20px; /* Add margin-left instead */
+}
+
+.rtl .property-image {
+    margin-right: 20px; /* Add margin-right for the image */
+    margin-left: 0; /* Reset margin-left for RTL */
+}
+
+.rtl .title {
+    text-align: right; /* Align title to the right */
+}
+.rtl ul, .rtl li {
+    padding-right: 0; /* Remove any padding on the right side */
+    margin-right: 0;  /* Remove any margin on the right side */
+}
+
+.rtl .list-unstyled {
+    padding-right: 0; /* Ensure the list has no padding on the right */
+    margin-right: 0;  /* Ensure no margin on the right */
+}
+
+.rtl .list-inline-item {
+    margin-right: 0; /* Remove margin on the right for inline items */
+    margin-left: 10px; /* Add margin on the left for inline items */
+}
+
 .container {
-    
+
     @media (min-width: 1400px) {
         max-width: 1140px !important;
     }

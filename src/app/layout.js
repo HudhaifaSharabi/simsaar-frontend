@@ -1,5 +1,8 @@
 import { Tajawal } from 'next/font/google'
-
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import "@/assets/scss/style.scss"
 import "@/assets/css/materialdesignicons.min.css"
