@@ -1,8 +1,8 @@
 // src/components/Sidebar.js
 
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const Sidebar = ({ roomInfo, onRoomChange }) => {
   return (
@@ -10,12 +10,16 @@ const Sidebar = ({ roomInfo, onRoomChange }) => {
       className="sidebar"
       initial={{ y: 300 }}
       animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 100 }}
+      transition={{ type: "spring", stiffness: 100 }}
     >
       <div className="controls">
         {roomInfo.hotspots.map((hotspot) => (
-          <button key={hotspot.id} onClick={() => onRoomChange(hotspot.targetRoom)}>
-            {hotspot.name}
+          <button
+            className="btn btn-primary  w-100"
+            key={hotspot.id}
+            onClick={() => onRoomChange(hotspot.targetRoom)}
+          >
+            {roomInfo.name}
           </button>
         ))}
       </div>
@@ -24,23 +28,12 @@ const Sidebar = ({ roomInfo, onRoomChange }) => {
           position: absolute;
           bottom: 0;
           width: 100%;
-          background: rgba(0, 0, 0, 0.5);  // شفافية للخلفية ليتداخل مع العرض
+          background: rgba(0, 0, 0, 0.5); // شفافية للخلفية ليتداخل مع العرض
           padding: 10px;
           display: flex;
           justify-content: center;
           gap: 10px;
           z-index: 10;
-        }
-        .controls button {
-          padding: 10px;
-          background-color: #0070f3;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-        .controls button:hover {
-          background-color: #005bb5;
         }
       `}</style>
     </motion.div>

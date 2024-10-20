@@ -184,6 +184,14 @@ export default function PropertyDetails({ params }) {
                     عرض واقعي
                   </Link>
                 </div>
+                <div className="d-flex mt-3">
+                  <Link
+                    href={`/rooms/` + itemDetails._id}
+                    className="btn btn-primary w-100"
+                  >
+                    اختر غرفه
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -193,7 +201,7 @@ export default function PropertyDetails({ params }) {
           <div className="row justify-content-center">
             <div className="col">
               <div className="section-title text-center mb-4 pb-2">
-                <h4 className="title mb-3">الغرف</h4>
+                <h4 className="title mb-3">ذات صله</h4>
                 <p className="text-muted para-desc mb-0 mx-auto">
                   A great plateform to buy, sell and rent your properties
                   without any agent or commisions.
