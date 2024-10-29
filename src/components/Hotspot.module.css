@@ -1,0 +1,20 @@
+.tooltip {
+  background: rgba(54, 111, 96, 0.592);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-20px);
+  z-index: 1000;
+}
+
+.hotspotMarker {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.hotspotMarker:hover {
+  transform: scale(1.2);
+}

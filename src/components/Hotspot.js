@@ -1,32 +1,52 @@
-import { useRef, useState } from 'react';
-import { Html, useTexture } from '@react-three/drei';
-import { motion } from 'framer-motion';
+import { useRef, useState } from "react";
+import { Html } from "@react-three/drei";
+import * as THREE from "three";
+import styles from "./Hotspot.module.css";
 
-const Hotspot = ({ hotspot, onClick }) => {
-  const hotspotRef = useRef();
-  const iconTexture = useTexture('/hotspot-icon.png');
-  
-  // حالة لتخزين حجم الـ hotspot
-  const [scale, setScale] = useState(1.5); // حجم البداية للـ hotspot
+const Hotspot = ({ hotspot, onClick, size = 50 }) => {
+  const [hovered, setHovered] = useState(false);
+  const meshRef = useRef();
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    onClick(hotspot);
+  };
 
   return (
-    <sprite
-      position={[hotspot.position[0], -10, hotspot.position[2]]}  // وضع الـ hotspot في موقعه الصحيح
-      ref={hotspotRef}
-      onClick={() => onClick(hotspot.targetRoom)}
-      scale={[scale, scale, scale]}  // تطبيق الحجم على الـ hotspot
-      onPointerOver={() => setScale(2.0)}  // تكبير الحجم عند مرور الماوس
-      onPointerOut={() => setScale(1.5)}  // إعادة الحجم عند إزالة الماوس
+    <group
+      position={hotspot.position}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      onClick={handleClick}
     >
-      <spriteMaterial 
-        map={iconTexture} 
-        transparent={true}  // تفعيل الشفافية
-        depthWrite={false}  // منع الكتابة على العمق لتفادي مشاكل العرض
-      />
-      <Html distanceFactor={10}>
-        {/* محتوى إضافي هنا إذا لزم */}
-      </Html>
-    </sprite>
+      {/* Larger floor circle */}
+      <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} renderOrder={1000}>
+        <circleGeometry args={[size / 5, 32]} />
+        <meshBasicMaterial
+          color={hovered ? "#ff4444" : "#ffffff"}
+          transparent
+          opacity={0.8}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Larger arrow pointing up */}
+      <mesh position={[0, 5, 0]}>
+        <coneGeometry args={[size / 8, size / 4, 32]} />
+        <meshBasicMaterial
+          color={hovered ? "#ff4444" : "#ffffff"}
+          transparent
+          opacity={0.9}
+        />
+      </mesh>
+
+      {/* Tooltip */}
+      {hovered && (
+        <Html center position={[0, 20, 0]}>
+          <div className={styles.tooltip}>{hotspot.name}</div>
+        </Html>
+      )}
+    </group>
   );
 };
 

@@ -1,33 +1,76 @@
 // src/data/roomsData.js
 
-export const rooms = [
+export const roomsData = {
+  "allImages": [
     {
-      id: '1',
-      name: 'الغرفة الأولى',
-      description: 'هذه هي الغرفة الأولى والتي تحتوي على ميزات رائعة.',
-      image: '/images/rooms/room1.jpg',
-      hotspots: [
-        { id: '1-1', position: [-13, -10, -2], name: 'الانتقال إلى الغرفة الثانية', targetRoom: '2' },
-      ],
+      "_id": "img1",
+      "name": "Living Room",
+      "url": "/360-images/bedroom.jpg",
+      "thumbnail": "/thumbnails/living-room-thumb.jpg",
+      "dateAdded": "2024-03-20T10:00:00Z",
+      "category": "residential"
     },
     {
-      id: '2',
-      name: 'الغرفة الثانية',
-      description: 'هذه هي الغرفة الثانية، وهي تحتوي على تفاصيل فريدة.',
-      image: '/images/rooms/room2.jpg',
-      hotspots: [
-        { id: '2-1', position: [15, 0, 2], name: 'العودة إلى الغرفة الأولى', targetRoom: '1' },
-        { id: '2-2', position: [-20, 0, -1], name: 'العودة إلى الغرفة الأولى', targetRoom: '3' },
+      "_id": "img2",
+      "name": "Kitchen",
+      "url": "/360-images/kitchen.jpg",
+      "thumbnail": "/thumbnails/kitchen-thumb.jpg",
+      "dateAdded": "2024-03-20T10:01:00Z",
+      "category": "residential"
+    }
+  ],
+  "activeRooms": [
+    {
+      "_id": "room1",
+      "imageId": "img1",
+      "isActive": true,
+      "hotspots": [
+        {
+          "id": "hs1",
+          "name": "To Kitchen",
+          "position": [250, -150, 0],
+          "targetImage": "img2",
+          "tooltip": "Go to Kitchen",
+          "type": "floor",
+          "targetView": {
+            "rotation": [0, Math.PI, 0],
+            "fov": 75
+          }
+        }
       ],
+      "defaultView": {
+        "rotation": [0, 0, 0],
+        "fov": 75
+      }
     },
     {
-      id: '3',
-      name: 'الغرفة الثالثة',
-      description: 'الغرفة الثالثة تتميز بتصميمها الأنيق.',
-      image: '/images/rooms/room3.jpg',
-      hotspots: [
-        { id: '3-1', position: [15, 0, -.2], name: 'العودة إلى الغرفة الثانية،', targetRoom: '2' },
+      "_id": "room2",
+      "imageId": "img2",
+      "isActive": true,
+      "hotspots": [
+        {
+          "id": "hs2",
+          "name": "To Living Room",
+          "position": [-250, -150, 0],
+          "targetImage": "img1",
+          "tooltip": "Back to Living Room",
+          "type": "floor",
+          "targetView": {
+            "rotation": [0, 0, 0],
+            "fov": 75
+          }
+        }
       ],
-    },
-  ];
+      "defaultView": {
+        "rotation": [0, 0, 0],
+        "fov": 75
+      }
+    }
+  ],
+  "settings": {
+    "hotspotSize": 50,
+    "transitionSpeed": 1000,
+    "defaultFov": 75
+  }
+};
   

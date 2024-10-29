@@ -1,0 +1,170 @@
+.sidebar {
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  z-index: 10;
+  background: none;
+  backdrop-filter: none;
+}
+.controls {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.currentRoom {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.currentRoom h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.roomNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.roomButtons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex: 1;
+}
+
+.arrowButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.arrowButton:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.roomButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.roomButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.activeRoom {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.roomThumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.roomThumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.roomName {
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hotspotButtons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.navigationButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  padding: 12px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.navigationButton:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.buttonIcon {
+  font-size: 1.2em;
+}
+
+.buttonText {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    padding: 15px;
+  }
+
+  .roomButtons {
+    gap: 10px;
+  }
+
+  .roomButton {
+    min-width: 80px;
+  }
+
+  .roomThumbnail {
+    width: 50px;
+    height: 50px;
+  }
+
+  .roomName {
+    font-size: 0.8rem;
+  }
+
+  .navigationButton {
+    padding: 10px 20px;
+  }
+}
