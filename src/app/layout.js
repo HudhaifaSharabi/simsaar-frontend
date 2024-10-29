@@ -1,23 +1,23 @@
-import { Tajawal } from 'next/font/google'
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'leaflet/dist/leaflet.css';
-import 'bootstrap/dist/css/bootstrap.css'
-import "@/assets/scss/style.scss"
-import "@/assets/css/materialdesignicons.min.css"
-import { DataProvider } from '@/context/DataContext';
+import { Tajawal } from "next/font/google";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "leaflet/dist/leaflet.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "@/assets/scss/style.scss";
+import "@/assets/css/materialdesignicons.min.css";
+import { DataProvider } from "@/context/DataContext";
 
-const league = Tajawal({ 
-  subsets: ['latin'],
-  weight: ['300','500'],
-  variable: '--font-league',
- })
+const league = Tajawal({
+  subsets: ["latin"],
+  weight: ["300", "500"],
+  variable: "--font-league",
+});
 
 export const metadata = {
-  title: 'سمسار',
-  description: 'سمسار',
-}
+  title: "سمسار",
+  description: "سمسار",
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -26,5 +26,5 @@ export default function RootLayout({ children }) {
         <DataProvider>{children}</DataProvider>
       </body>
     </html>
-  )
+  );
 }
