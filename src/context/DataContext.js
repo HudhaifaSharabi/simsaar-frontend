@@ -10,9 +10,14 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/api/property`);
+        const res = await fetch(
+          '/api/resource/facilities?fields=["*"]&expand=1' // Use the rewritten API route
+        );
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         const jsonData = await res.json();
-        setData(jsonData);
+        setData(jsonData.data); // Access the 'data' property from the response
       } catch (err) {
         console.error("Error fetching data:", err);
       }

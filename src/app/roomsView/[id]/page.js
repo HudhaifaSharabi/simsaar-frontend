@@ -20,6 +20,7 @@ const TopLeftSidebar = ({ currentRoom }) => {
       <img src="/images/logo.png" alt="Logo" className={styles.logo} />
       <div className={styles.roomInfo}>
         <h2>{roomInfo?.name}</h2>
+        
         <div className={styles.floorButtons}>
           <button className={styles.floorButton}>Ground Floor</button>
           <button className={styles.floorButton}>First Floor</button>

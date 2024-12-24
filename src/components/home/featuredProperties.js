@@ -78,18 +78,18 @@ export default function FuaturedProperties() {
                   </div>
                   <div className="card-body content p-3">
                     <Link
-                      href={`/property-detail/${item._id}`}
+                      href={`/property-detail/${item.name}`}
                       className="title fs-5 text-dark fw-medium"
                     >
-                      {item.title}
+                      {item.facilitie_name}
                     </Link>
                     <br />
                     <i className="mdi mdi-map-marker fs-5 me-2 text-primary"></i>
-                    <span className="text-muted rtl-direction">
+                    {/* <span className="text-muted rtl-direction">
                       {item.location.formattedAddress}{" "}
-                    </span>
+                    </span> */}
 
-                    <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
+                    {/* <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
                       <li className="d-flex align-items-center me-3">
                         <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
                         <span className="text-muted rtl-direction">
@@ -175,7 +175,7 @@ export default function FuaturedProperties() {
                           </li>
                         </ul>
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                 </div>
               </div>
