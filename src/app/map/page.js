@@ -16,7 +16,9 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "@/assets/animations/loading-animation.json";
 import Image from "next/image";
 import Link from "next/link";
-import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
+import SwiperCore from "swiper";
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);

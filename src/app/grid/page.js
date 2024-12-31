@@ -9,25 +9,47 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import animationData from '@/assets/animations/loading-animation.json'; // Adjust the path accordingly
 import { FiHome, FiHeart, FiCamera } from "@/assets/icons/vander";
 import SelectOne from "@/components/home/select/selectOne";
-import { useData } from "@/context/DataContext";
 
 export default function Grid() {
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);  // State for the current page
     const itemsPerPage = 9;  // Show 9 items per page
-    const data = useData(); // Ensure `data` is always an array
+   // Ensure `data` is always an array
 
+   useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const res = await fetch(
+                'http://localhost:86/api/resource/facilities?fields=["*"]&expand=1'
+            );
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            const jsonData = await res.json();
+            if (Array.isArray(jsonData.data)) {
+                setData(jsonData.data);
+            } else {
+                console.error("Unexpected data structure:", jsonData);
+                setData([]);
+            }
+        } catch (err) {
+            console.error("Error fetching data:", err);
+            setData([]);
+        }
+    };
+ 
+     fetchData();
+   }, []);
     // Debugging: Check fetched data
-    useEffect(() => {
-        console.log('Fetched data:', data);
-        if (data.length > 0) setLoading(false);
-    }, [data]);
-
-    // Calculate the items to display for the current page
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+    // Calculate the items to display for the current page
+   
 
     // Function to handle page change
     const handlePageChange = (pageNumber) => {
@@ -36,14 +58,22 @@ export default function Grid() {
 
     if (loading) {
         return (
-            <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-                <Player autoplay loop src={animationData} style={{ height: '300px', width: '300px' }} />
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                }}
+            >
+                <Player
+                    autoplay
+                    loop
+                    src={animationData}
+                    style={{ height: "150px", width: "150px" }}
+                />
             </div>
         );
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
     }
 
     // Total number of pages

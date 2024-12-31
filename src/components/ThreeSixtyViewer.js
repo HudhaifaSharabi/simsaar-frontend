@@ -4,7 +4,6 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Environment, useProgress, Html } from "@react-three/drei";
 import { Suspense, useRef, useEffect, useState, useMemo } from "react";
 import * as THREE from "three";
-import { sRGBEncoding } from "three";
 
 import Hotspot from "@/components/Hotspot";
 import styles from "@/components/ThreeSixtyViewer.module.css";
@@ -25,7 +24,7 @@ const LoadingScreen = () => {
 };
 
 // Info Card
-const InfoCard = ({ FacilitieName , roomName, logoUrl, places , router}) => (
+const InfoCard = ({ FacilitieName, roomName, logoUrl, places, router }) => (
   <div className={styles.infoCard}>
     <div className={styles.roomInfo}>
       <img src={logoUrl} alt="Logo" className={styles.logo} />
@@ -34,7 +33,10 @@ const InfoCard = ({ FacilitieName , roomName, logoUrl, places , router}) => (
       <div className={styles.controls}>
         {places.length > 0 ? (
           places.map((place, index) => (
-            <button key={index} onClick={() => router.push(`/roomsView/${place.default_hotspot}/${place.facilitie}`)}>
+            <button
+              key={index}
+              onClick={() => router.push(`/roomsView/${place.default_hotspot}/${place.facilitie}`)}
+            >
               {place.name1}
             </button>
           ))
@@ -62,7 +64,7 @@ const Scene = ({ roomData, currentTexture, onHotspotClick }) => {
           map={currentTexture}
           side={THREE.BackSide}
           toneMapped={false}
-          encoding={sRGBEncoding}
+          encoding={THREE.sRGBEncoding}
         />
       </mesh>
 
@@ -107,15 +109,16 @@ const ThreeSixtyViewer = ({ roomData, onHotspotClick, places }) => {
     };
     loadCurrentTexture();
   }, [roomData.image360]);
+
   return (
     <div className={styles.viewerContainer}>
       <InfoCard
         key={roomData.name}
         roomName={roomData.place_name}
         FacilitieName={roomData.facilitie_name}
-        logoUrl="/images/logo.png" 
-        places={places} 
-        router={router} 
+        logoUrl="/images/logo.png"
+        places={places}
+        router={router}
       />
       <Canvas
         camera={{
@@ -126,7 +129,7 @@ const ThreeSixtyViewer = ({ roomData, onHotspotClick, places }) => {
         }}
         onCreated={({ gl }) => {
           gl.setPixelRatio(window.devicePixelRatio);
-          gl.outputEncoding = sRGBEncoding;
+          gl.outputEncoding = THREE.sRGBEncoding;
         }}
       >
         <Suspense fallback={<LoadingScreen />}>
