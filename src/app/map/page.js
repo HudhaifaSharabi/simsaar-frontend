@@ -82,7 +82,7 @@ export default function IndexFour() {
   const fetchPropertyTypes = async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_API}/api/resource/Property Type?fields=["*"]`
+        `/api/resource/Property Type?fields=["*"]`
       );
       if (!res.ok) throw new Error("Property types not found");
       const data = await res.json();
