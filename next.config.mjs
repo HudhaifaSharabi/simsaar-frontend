@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "localhost",
+        hostname: "65.20.79.47",
         port: "86",
         pathname: "/files/**",
       },
@@ -15,11 +15,11 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:86/api/:path*', // Frappe API endpoint
+        destination: 'http://65.20.79.47//api/:path*', // Frappe API endpoint
       },
       {
         source: '/files/:path*',
-        destination: 'http://localhost:86/files/:path*', // Frappe files endpoint
+        destination: 'http://65.20.79.47//files/:path*', // Frappe files endpoint
       },
     ];
   },
