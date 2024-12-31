@@ -100,8 +100,8 @@ export default function IndexFour() {
   const getIconUrl = (propertyTypeId) => {
     const type = propertyTypes.find((pt) => pt.name === propertyTypeId);
     return type
-      ? `${process.env.NEXT_PUBLIC_SERVER_API.replace(/^https?:\/\//, "")}${type.icon}`
-      : `http://${process.env.NEXT_PUBLIC_SERVER_API.replace(/^https?:\/\//, "")}/images/hotelMapMarker.png`; // Default icon if not found
+      ? process.env.NEXT_PUBLIC_SERVER_API + type.icon
+      : `${process.env.NEXT_PUBLIC_SERVER_API}/images/hotelMapMarker.png`; // Default icon if not found
   };
 
   if (loading) {
