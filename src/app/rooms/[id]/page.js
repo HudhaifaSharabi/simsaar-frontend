@@ -146,7 +146,6 @@ export default function Rooms({ params }) {
                   <div className="card property border-0 shadow position-relative overflow-hidden rounded-3 ">
                     <div className="property-image position-relative overflow-hidden shadow">
                       <Image
-                      priority={false}
                         src={`${process.env.NEXT_PUBLIC_SERVER_API}${item.image}`}
                         width={0}
                         height={0}
