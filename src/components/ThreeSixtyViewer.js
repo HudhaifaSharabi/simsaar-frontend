@@ -64,7 +64,6 @@ const Scene = ({ roomData, currentTexture, onHotspotClick }) => {
           map={currentTexture}
           side={THREE.BackSide}
           toneMapped={false}
-          encoding={THREE.sRGBEncoding}
         />
       </mesh>
 
@@ -129,7 +128,6 @@ const ThreeSixtyViewer = ({ roomData, onHotspotClick, places }) => {
         }}
         onCreated={({ gl }) => {
           gl.setPixelRatio(window.devicePixelRatio);
-          gl.outputEncoding = THREE.sRGBEncoding;
         }}
       >
         <Suspense fallback={<LoadingScreen />}>

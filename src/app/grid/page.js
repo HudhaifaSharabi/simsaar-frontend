@@ -20,26 +20,21 @@ export default function Grid() {
    // Ensure `data` is always an array
 
    useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const res = await fetch(
-                'http://localhost:86/api/resource/facilities?fields=["*"]&expand=1'
-            );
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const jsonData = await res.json();
-            if (Array.isArray(jsonData.data)) {
-                setData(jsonData.data);
-            } else {
-                console.error("Unexpected data structure:", jsonData);
-                setData([]);
-            }
-        } catch (err) {
-            console.error("Error fetching data:", err);
-            setData([]);
-        }
-    };
+     const fetchData = async () => {
+       try {
+         const res = await fetch(
+           'http://localhost:86/api/resource/facilities?fields=["*"]&expand=1' // Use the rewritten API route
+         );
+         if (!res.ok) {
+           throw new Error(`HTTP error! status: ${res.status}`);
+         }
+         const jsonData = await res.json();
+         setData(jsonData.data);
+          // Access the 'data' property from the response
+       } catch (err) {
+         console.error("Error fetching data:", err);
+       }
+     };
  
      fetchData();
    }, []);
@@ -56,25 +51,27 @@ export default function Grid() {
         setCurrentPage(pageNumber);
     };
 
-    if (loading) {
-        return (
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "100vh",
-                }}
-            >
-                <Player
-                    autoplay
-                    loop
-                    src={animationData}
-                    style={{ height: "150px", width: "150px" }}
-                />
-            </div>
-        );
+    if (!data) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <Player
+            autoplay
+            loop
+            src={animationData}
+            style={{ height: "150px", width: "150px" }}
+          />
+        </div>
+      );
     }
+  
+    if (!data) return null;
 
     // Total number of pages
     const totalPages = Math.ceil(data.length / itemsPerPage);
