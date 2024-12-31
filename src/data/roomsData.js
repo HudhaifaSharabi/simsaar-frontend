@@ -37,6 +37,18 @@ export const roomsData = {
             fov: 75,
           },
         },
+        {
+          id: "hs2",
+          name: "To room",
+          position: [150, -150, 0],
+          targetImage: "img2",
+          tooltip: "Go to Kitchen",
+          type: "floor",
+          targetView: {
+            rotation: [0, Math.PI, 0],
+            fov: 75,
+          },
+        },
       ],
       defaultView: {
         rotation: [0, 0, 0],

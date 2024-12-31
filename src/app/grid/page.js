@@ -9,37 +9,25 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import animationData from '@/assets/animations/loading-animation.json'; // Adjust the path accordingly
 import { FiHome, FiHeart, FiCamera } from "@/assets/icons/vander";
 import SelectOne from "@/components/home/select/selectOne";
+import { useData } from "@/context/DataContext";
 
 export default function Grid() {
-    const [property, setProperty] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);  // State for the current page
-    const itemsPerPage = 9;  // Show 10 items per page
+    const itemsPerPage = 9;  // Show 9 items per page
+    const data = useData(); // Ensure `data` is always an array
 
+    // Debugging: Check fetched data
     useEffect(() => {
-        fetchRoomData();
-    }, []);
-
-    const fetchRoomData = async () => {
-        try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/api/property`);
-            if (!res.ok) {
-                throw new Error('Property not found');
-            }
-            const data = await res.json();
-            setProperty(data);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+        console.log('Fetched data:', data);
+        if (data.length > 0) setLoading(false);
+    }, [data]);
 
     // Calculate the items to display for the current page
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = property.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
     // Function to handle page change
     const handlePageChange = (pageNumber) => {
@@ -59,7 +47,7 @@ export default function Grid() {
     }
 
     // Total number of pages
-    const totalPages = Math.ceil(property.length / itemsPerPage);
+    const totalPages = Math.ceil(data.length / itemsPerPage);
 
     return (
         <>
@@ -105,7 +93,7 @@ export default function Grid() {
                                     <div className="card property border-0 shadow position-relative overflow-hidden rounded-3 ">
                                         <div className="property-image position-relative overflow-hidden shadow">
                                         <Image
-                                            src={`${process.env.NEXT_PUBLIC_SERVER_API}${item.image}`}
+                                            src={process.env.NEXT_PUBLIC_SERVER_API + item.image}
                                             width={0}
                                             height={0}
                                             sizes="100vw"
@@ -132,13 +120,13 @@ export default function Grid() {
                                         </ul>
                                         </div>
                                         <div className="card-body content p-4">
-                                        <Link href={`/property-detail/${item._id}`} className="title fs-5 text-dark fw-medium rtl-direction">
+                                        <Link href={`/property-detail/${item.name}`} className="title fs-5 text-dark fw-medium rtl-direction">
                                             <div className="rtl-direction">
-                                                <p className="">{item.title}</p>
-                                                <span className='text-muted '><small>{item.location.formattedAddress}</small></span>
+                                                <p className="">{item.facilitie_name}</p>
+                                                <span className='text-muted '><small>{item.formatted_address}</small></span>
                                             </div>
                                         </Link>
-
+{/* 
                                         <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
                                             <li className="d-flex align-items-center me-3">
                                                 <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
@@ -176,7 +164,7 @@ export default function Grid() {
                                                 />
                                                 <span className="text-muted rtl-direction">{item.amenities.extraBedFacility ? 'متوفر' : 'غير متوفر'}</span>
                                             </li>
-                                        </ul>
+                                        </ul> */}
 
                                         <ul className="list-unstyled d-flex justify-content-end mt-2 mb-0"> {/* Align items to the right */}
                                             <li className="list-inline-item mb-0 text-center">
@@ -194,7 +182,7 @@ export default function Grid() {
                                                 </ul>
                                             </li>
                                             <li className="list-inline-item mb-0 text-end"> {/* Align text to the end */}
-                                                <span className="text-muted">تبداء الاسعار من</span>
+                                                <span className="text-muted"> الاسعار </span>
                                                 <p className="fw-medium mb-0 rtl-direction">
                                                 {item.price} ريال
                                                 </p>

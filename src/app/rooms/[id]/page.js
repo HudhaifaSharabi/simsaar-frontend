@@ -25,13 +25,13 @@ export default function Rooms({ params }) {
     const fetchRoomData = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_API}/api/rooms?property=${id}`
+          `/api/resource/Places?fields=["*"]`
         );
         if (!res.ok) {
           throw new Error("rooms not found");
         }
         const data = await res.json();
-        setRooms(data);
+        setRooms(data.data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -41,7 +41,7 @@ export default function Rooms({ params }) {
 
     const fetchPropertyDetails = async () => {
       if (globalData && globalData.length > 0) {
-        const item = globalData.find((item) => item._id === id); // Match based on _id
+        const item = globalData.find((item) => item.name === id); // Match based on _id
         setPropertyDetails(item);
       } else {
         // If global data is not available, fetch it again for specific item
@@ -146,13 +146,14 @@ export default function Rooms({ params }) {
                   <div className="card property border-0 shadow position-relative overflow-hidden rounded-3 ">
                     <div className="property-image position-relative overflow-hidden shadow">
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_SERVER_API}${item.gallery[0]}`}
+                      priority={false}
+                        src={`${process.env.NEXT_PUBLIC_SERVER_API}${item.image}`}
                         width={0}
                         height={0}
                         sizes="100vw"
                         style={{ width: "100%", height: "auto" }}
                         className="img-fluid"
-                        alt={item.title}
+                        alt={item.name1}
                       />
                       <ul className="list-unstyled property-icon">
                         <li>
@@ -183,119 +184,17 @@ export default function Rooms({ params }) {
                     </div>
                     <div className="card-body content p-4">
                       <Link
-                        href={`/room-detail/${item._id}`}
+                        href={`/room-detail/${item.name}`}
                         className="title fs-5 text-dark fw-medium rtl-direction"
                       >
-                        {item.name}
+                        {item.name1}
                       </Link>
 
-                      <ul className="list-unstyled list-room d-flex flex-wrap mt-3 py-3 border-top border-bottom  justify-content-end">
-                        {/* Bed Room */}
-                        {item.amenities.bedRoom && (
-                          <li className="d-flex align-items-center me-4 mb-2 ">
-                            <span className="text-muted rtl-direction ">
-                              {item.amenities.bedRoom}
-                            </span>
-                            <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
-                          </li>
-                        )}
-
-                        {/* Free WiFi */}
-                        {item.amenities.freeWifiAvailability && (
-                          <li className="d-flex align-items-center me-4 mb-2">
-                            <span className="text-muted rtl-direction">
-                              واي فاي مجاني
-                            </span>
-                            <i className="mdi mdi-wifi fs-5 me-2 text-primary"></i>
-                          </li>
-                        )}
-
-                        {/* View Transition */}
-                        {item.amenities.viewTransitionAvailability && (
-                          <li className="d-flex align-items-center me-4 mb-2">
-                            <span className="text-muted rtl-direction">
-                              توافر منظر رائع
-                            </span>
-                            <i className="mdi mdi-eye fs-5 me-2 text-primary"></i>
-                          </li>
-                        )}
-
-                        {/* En-suite Bath */}
-                        {item.amenities.en_suiteBathAvailability && (
-                          <li className="d-flex align-items-center me-4 mb-2">
-                            <span className="text-muted rtl-direction">
-                              حمام داخلي
-                            </span>
-                            <i className="mdi mdi-bathtub fs-5 me-2 text-primary"></i>
-                          </li>
-                        )}
-
-                        {/* Air Conditioning */}
-                        {item.amenities.airCondition && (
-                          <li className="d-flex align-items-center me-4 mb-2">
-                            <span className="text-muted rtl-direction">
-                              تكييف هواء
-                            </span>
-                            <i className="mdi mdi-air-conditioner fs-5 me-2 text-primary"></i>
-                          </li>
-                        )}
-
-                        {/* Extra Bed Facility */}
-                        {item.amenities.extraBedFacility && (
-                          <li className="d-flex align-items-center me-4 mb-2">
-                            <span className="text-muted rtl-direction">
-                              إمكانية سرير إضافي
-                            </span>
-                            <Image
-                              src="/images/svg/bed-plus.svg"
-                              className="fs-5 me-2 text-primary"
-                              alt="Extra Bed Facility"
-                              width={24}
-                              height={24}
-                            />
-                          </li>
-                        )}
-
-                        {/* Room Size */}
-                        {item.amenities.roomSize && (
-                          <li className="d-flex align-items-center me-4 mb-2">
-                            <span className="text-muted">حجم الغرفة:</span>
-                            <span className="text-muted rtl-direction">
-                              {item.amenities.roomSize} قدم مربع
-                            </span>
-                            <i className="mdi mdi-ruler fs-5 me-2 text-primary"></i>
-                          </li>
-                        )}
-                      </ul>
-
-                      <ul className="list-unstyled d-flex justify-content-end mt-2 mb-0">
-                        <li className="list-inline-item mb-0 text-center">
-                          <span className="text-muted">التقييم</span>
-                          <ul className="fw-medium text-warning list-unstyled mb-0"></ul>
-                          <ul className="fw-medium text-warning list-unstyled mb-0 d-flex justify-content-end">
-                            <li className="list-inline-item mb-0 text-dark rtl-direction">
-                              5.0(30)
-                            </li>
-                            {[...Array(5)].map((_, starIndex) => (
-                              <li
-                                key={starIndex}
-                                className="list-inline-item mb-0"
-                              >
-                                <i className="mdi mdi-star"></i>
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
-                        <li className="list-inline-item mb-0 text-end">
-                          <span className="text-muted">سعر الغرفة لليله</span>
-                          <p className="fw-medium mb-0 rtl-direction">
-                            {item.price} ريال
-                          </p>
-                        </li>
-                      </ul>
+                      
                       <div className="text-center mt-3">
                         <Link
-                          href={`/roomsView/${item._id}`} // Adjust the link as needed
+                          href={`/roomsView/${item.default_hotspot}/${id}/`} // Adjust the link as needed
+
                           className="btn btn-primary  w-100"
                         >
                           عرض الغرفه التفاعلي

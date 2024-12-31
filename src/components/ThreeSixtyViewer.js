@@ -1,93 +1,139 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { Suspense, useState, useRef, useEffect } from "react";
-import Hotspot from "./Hotspot";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, Environment, useProgress, Html } from "@react-three/drei";
+import { Suspense, useRef, useEffect, useState, useMemo } from "react";
 import * as THREE from "three";
-import styles from "./ThreeSixtyViewer.module.css";
+import { sRGBEncoding } from "three";
 
-const ThreeSixtyViewer = ({ roomData, onHotspotClick, preloadedTextures }) => {
+import Hotspot from "@/components/Hotspot";
+import styles from "@/components/ThreeSixtyViewer.module.css";
+import { texturePreloader } from "@/utils/texturePreloader";
+import { useRouter } from "next/navigation";
+
+// Loading Screen
+const LoadingScreen = () => {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div className={styles.loadingScreen}>
+        <div className={styles.loadingSpinner}></div>
+        <div className={styles.loadingProgress}>Loading... {progress.toFixed(0)}%</div>
+      </div>
+    </Html>
+  );
+};
+
+// Info Card
+const InfoCard = ({ FacilitieName , roomName, logoUrl, places , router}) => (
+  <div className={styles.infoCard}>
+    <div className={styles.roomInfo}>
+      <img src={logoUrl} alt="Logo" className={styles.logo} />
+      <h3>{FacilitieName}</h3>
+      <h4>{roomName}</h4>
+      <div className={styles.controls}>
+        {places.length > 0 ? (
+          places.map((place, index) => (
+            <button key={index} onClick={() => router.push(`/roomsView/${place.default_hotspot}/${place.facilitie}`)}>
+              {place.name1}
+            </button>
+          ))
+        ) : (
+          <div>No properties available</div>
+        )}
+      </div>
+    </div>
+  </div>
+);
+
+// Scene Component
+const Scene = ({ roomData, currentTexture, onHotspotClick }) => {
   const sphereRef = useRef();
   const controlsRef = useRef();
-  const [transitioning, setTransitioning] = useState(false);
+  const { camera, gl } = useThree();
 
-  useEffect(() => {
-    if (sphereRef.current && preloadedTextures[roomData.imageId]) {
-      const material = sphereRef.current.material;
-      material.map = preloadedTextures[roomData.imageId];
-      material.needsUpdate = true;
-
-      // Apply room's default view
-      if (roomData.defaultView && controlsRef.current) {
-        controlsRef.current.object.rotation.set(
-          ...roomData.defaultView.rotation
-        );
-        controlsRef.current.update();
-      }
-    }
-  }, [roomData.imageId, preloadedTextures, roomData.defaultView]);
-
-  const handleHotspotClick = async (hotspot) => {
-    if (transitioning) return;
-    setTransitioning(true);
-
-    // Store target view for the next room
-    const targetView = hotspot.targetView;
-
-    // Call parent handler with both target image and view
-    if (onHotspotClick) {
-      await onHotspotClick(hotspot.targetImage, targetView);
-    }
-
-    setTransitioning(false);
-  };
+  const sphereGeometry = useMemo(() => new THREE.SphereGeometry(500, 180, 90), []);
 
   return (
+    <>
+      <mesh ref={sphereRef} scale={[-1, 1, 1]} rotation={[0, Math.PI / 2, 0]}>
+        <primitive object={sphereGeometry} />
+        <meshBasicMaterial
+          map={currentTexture}
+          side={THREE.BackSide}
+          toneMapped={false}
+          encoding={sRGBEncoding}
+        />
+      </mesh>
+
+      {roomData.hotspots?.map((hotspot) => (
+        <Hotspot
+          key={hotspot.name}
+          hotspot={hotspot}
+          camera={camera}
+          controls={controlsRef.current}
+          onClick={onHotspotClick}
+        />
+      ))}
+
+      <OrbitControls
+        ref={controlsRef}
+        enableDamping
+        dampingFactor={0.1}
+        rotateSpeed={0.8}
+        maxDistance={500}
+        minDistance={0.5}
+        target={[0, 0, 0]}
+        makeDefault
+        args={[camera, gl.domElement]}
+      />
+    </>
+  );
+};
+
+// Main Viewer
+const ThreeSixtyViewer = ({ roomData, onHotspotClick, places }) => {
+  const router = useRouter();
+  const [currentTexture, setCurrentTexture] = useState(null);
+
+  useEffect(() => {
+    const loadCurrentTexture = async () => {
+      try {
+        const texture = await texturePreloader.preload(roomData.image360);
+        setCurrentTexture(texture);
+      } catch (error) {
+        console.error("Error loading texture:", error);
+      }
+    };
+    loadCurrentTexture();
+  }, [roomData.image360]);
+  return (
     <div className={styles.viewerContainer}>
+      <InfoCard
+        key={roomData.name}
+        roomName={roomData.place_name}
+        FacilitieName={roomData.facilitie_name}
+        logoUrl="/images/logo.png" 
+        places={places} 
+        router={router} 
+      />
       <Canvas
         camera={{
           position: [0, 0, 0.1],
-          fov: roomData.defaultView?.fov || 75,
+          fov: 75,
+          near: 0.1,
+          far: 1000,
+        }}
+        onCreated={({ gl }) => {
+          gl.setPixelRatio(window.devicePixelRatio);
+          gl.outputEncoding = sRGBEncoding;
         }}
       >
-        <Suspense fallback={null}>
-          <mesh ref={sphereRef} name="sphere">
-            <sphereGeometry args={[500, 60, 40]} />
-            <meshBasicMaterial
-              map={preloadedTextures[roomData.imageId]}
-              side={THREE.BackSide}
-            />
-          </mesh>
-
-          {/* Floor */}
-          {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -150, 0]}>
-            <planeGeometry args={[1000, 1000]} />
-            <meshBasicMaterial 
-              color="#111111" 
-              transparent 
-              opacity={0.3} 
-              side={THREE.DoubleSide}
-            />
-          </mesh> */}
-
-          {/* Hotspots */}
-          {roomData.hotspots?.map((hotspot) => (
-            <Hotspot
-              key={hotspot.id}
-              hotspot={hotspot}
-              onClick={handleHotspotClick}
-              size={roomData.settings?.hotspotSize || 50}
-            />
-          ))}
-
-          <OrbitControls
-            ref={controlsRef}
-            enableZoom={false}
-            enablePan={false}
-            rotateSpeed={0.5}
-            minPolarAngle={Math.PI * 0.2}
-            maxPolarAngle={Math.PI * 0.8}
+        <Suspense fallback={<LoadingScreen />}>
+          <Scene
+            roomData={roomData}
+            currentTexture={currentTexture}
+            onHotspotClick={onHotspotClick}
           />
         </Suspense>
       </Canvas>

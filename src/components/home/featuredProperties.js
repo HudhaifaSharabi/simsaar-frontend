@@ -85,23 +85,23 @@ export default function FuaturedProperties() {
                     </Link>
                     <br />
                     <i className="mdi mdi-map-marker fs-5 me-2 text-primary"></i>
-                    {/* <span className="text-muted rtl-direction">
-                      {item.location.formattedAddress}{" "}
-                    </span> */}
+                    <span className="text-muted rtl-direction">
+                      {item.formatted_address}{" "}
+                    </span>
 
-                    {/* <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
+                    <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
                       <li className="d-flex align-items-center me-3">
                         <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
                         <span className="text-muted rtl-direction">
-                          {item.amenities.bedRoom}
+                          {item.bed_room}
                         </span>
                       </li>
 
                       <li className="d-flex align-items-center me-3">
                         <i className="mdi mdi-wifi fs-5 me-2 text-primary"></i>
                         <span className="text-muted rtl-direction">
-                          {item.amenities.wifiAvailability
-                            ? "متوفر"
+                          {item.wifi_availability == 1
+                            ? "متوفر" 
                             : "غير متوفر"}
                         </span>
                       </li>
@@ -109,7 +109,7 @@ export default function FuaturedProperties() {
                       <li className="d-flex align-items-center me-3">
                         <i className="mdi mdi-car fs-5 me-2 text-primary"></i>
                         <span className="text-muted rtl-direction">
-                          {item.amenities.parkingAvailability
+                          {item.parking_availability == 1
                             ? "متوفر"
                             : "غير متوفر"}
                         </span>
@@ -119,7 +119,7 @@ export default function FuaturedProperties() {
                       <li className="d-flex align-items-center me-3">
                         <i className="mdi mdi-pool fs-5 me-2 text-primary"></i>
                         <span className="text-muted rtl-direction">
-                          {item.amenities.poolAvailability
+                          {item.pool_availability == 1
                             ? "متوفر"
                             : "غير متوفر"}
                         </span>
@@ -128,7 +128,7 @@ export default function FuaturedProperties() {
                       <li className="d-flex align-items-center me-3">
                         <i className="mdi mdi-air-conditioner fs-5 me-2 text-primary"></i>
                         <span className="text-muted rtl-direction">
-                          {item.amenities.airCondition ? "متوفر" : "غير متوفر"}
+                          {item.air_condition == 1 ? "متوفر" : "غير متوفر"}
                         </span>
                       </li>
 
@@ -141,7 +141,7 @@ export default function FuaturedProperties() {
                           height={24} // Adjust height as needed
                         />
                         <span className="text-muted rtl-direction">
-                          {item.amenities.extraBedFacility
+                          {item.extra_bedFacility == 1
                             ? "متوفر"
                             : "غير متوفر"}
                         </span>
@@ -149,7 +149,7 @@ export default function FuaturedProperties() {
                     </ul>
                     <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
                       <li className="list-inline-item mb-0">
-                        <span className="text-muted">تبدا الاسعار من</span>
+                        <span className="text-muted"> الاسعار </span>
                         <p className="fw-medium mb-0">{item.price}</p>
                       </li>
                       <li className="list-inline-item mb-0 text-muted">
@@ -175,7 +175,7 @@ export default function FuaturedProperties() {
                           </li>
                         </ul>
                       </li>
-                    </ul> */}
+                    </ul>
                   </div>
                 </div>
               </div>

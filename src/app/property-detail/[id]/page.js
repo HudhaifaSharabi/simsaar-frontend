@@ -16,12 +16,12 @@ export default function PropertyDetails({ params }) {
   const { id } = params; // Get the id from the URL params
   const globalData = useData(); // Access the global data from context
   const [itemDetails, setItemDetails] = useState(null);
-
+  const [gallery, setGallery] = useState(null);
   // Fetch specific item details based on the dynamic id
   useEffect(() => {
     const fetchItemDetails = async () => {
       if (globalData && globalData.length > 0) {
-        const item = globalData.find((item) => item._id === id); // Match based on _id
+        const item = globalData.find((item) => item.name === id); // Match based on _id
         setItemDetails(item);
       } else {
         // If global data is not available, fetch it again for specific item
@@ -32,6 +32,18 @@ export default function PropertyDetails({ params }) {
 
     fetchItemDetails();
   }, [id, globalData]); // Fetch when id or global data changes
+  
+  useEffect(() => {
+    if (itemDetails) {
+      setGallery([
+        itemDetails.gallery,
+        itemDetails.image_2,
+        itemDetails.image_3,
+        itemDetails.image_4,
+        itemDetails.image_5,
+      ]);
+    }
+  }, [itemDetails]);
 
   if (!itemDetails) {
     return (
@@ -59,30 +71,30 @@ export default function PropertyDetails({ params }) {
       <Navbar navClass="defaultscroll sticky" menuClass="navigation-menu" />
       <section className="section mt-5 pt-4">
         <div className="container-fluid mt-2">
-          <PropertyDetailImg gallery={itemDetails.gallery} />
+          <PropertyDetailImg gallery={gallery} />
         </div>
 
         <div className="container mt-100 mt-60 rtl-direction ">
           <div className="row g-4">
             <div className="col-lg-8 col-md-7 col-12">
               <div className="section-title">
-                <h4 className="title mb-0">{itemDetails?.title}</h4>
+                <h4 className="title mb-0">{itemDetails?.facilitie_name}</h4>
                 <p className="text-black-50 para-desc mx-auto mb-0">
-                  {itemDetails?.location.formattedAddress}
+                  {itemDetails?.formatted_address}
                 </p>
 
                 <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
                   <li className="d-flex align-items-center me-3">
                     <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
                     <span className="text-muted rtl-direction">
-                      {itemDetails.amenities.bedRoom}
+                      {itemDetails.bed_room}
                     </span>
                   </li>
 
                   <li className="d-flex align-items-center me-3">
                     <i className="mdi mdi-wifi fs-5 me-2 text-primary"></i>
                     <span className="text-muted rtl-direction">
-                      {itemDetails.amenities.wifiAvailability
+                      {itemDetails.wifi_availability
                         ? "متوفر"
                         : "غير متوفر"}
                     </span>
@@ -91,7 +103,7 @@ export default function PropertyDetails({ params }) {
                   <li className="d-flex align-items-center me-3">
                     <i className="mdi mdi-car fs-5 me-2 text-primary"></i>
                     <span className="text-muted rtl-direction">
-                      {itemDetails.amenities.parkingAvailability
+                      {itemDetails.parking_availability
                         ? "متوفر"
                         : "غير متوفر"}
                     </span>
@@ -101,7 +113,7 @@ export default function PropertyDetails({ params }) {
                   <li className="d-flex align-items-center me-3">
                     <i className="mdi mdi-pool fs-5 me-2 text-primary"></i>
                     <span className="text-muted rtl-direction">
-                      {itemDetails.amenities.poolAvailability
+                      {itemDetails.pool_availability
                         ? "متوفر"
                         : "غير متوفر"}
                     </span>
@@ -110,7 +122,7 @@ export default function PropertyDetails({ params }) {
                   <li className="d-flex align-items-center me-3">
                     <i className="mdi mdi-air-conditioner fs-5 me-2 text-primary"></i>
                     <span className="text-muted rtl-direction">
-                      {itemDetails.amenities.airCondition
+                      {itemDetails.air_Condition
                         ? "متوفر"
                         : "غير متوفر"}
                     </span>
@@ -125,7 +137,7 @@ export default function PropertyDetails({ params }) {
                       height={24} // Adjust height as needed
                     />
                     <span className="text-muted rtl-direction">
-                      {itemDetails.amenities.extraBedFacility
+                      {itemDetails.extra_bedFacility
                         ? "متوفر"
                         : "غير متوفر"}
                     </span>
@@ -150,7 +162,7 @@ export default function PropertyDetails({ params }) {
 
             <div className="col-lg-4 col-md-5 col-12">
               <div className="rounded-3 shadow bg-white sticky-bar p-4">
-                <h5 className="mb-3">السعر يبداء من</h5>
+                <h5 className="mb-3">السعر  </h5>
 
                 <div className="d-flex align-items-center justify-content-between">
                   <h5 className="mb-0">{itemDetails.price}</h5>
@@ -180,13 +192,13 @@ export default function PropertyDetails({ params }) {
                   <Link href="#" className="btn btn-primary w-100 me-2">
                     احجز الان
                   </Link>
-                  <Link href="#" className="btn btn-primary w-100">
+                  <Link href={`/roomsView/${itemDetails.default_hotspot}/${itemDetails.name}`} className="btn btn-primary w-100">
                     عرض واقعي
                   </Link>
                 </div>
                 <div className="d-flex mt-3">
                   <Link
-                    href={`/rooms/` + itemDetails._id}
+                    href={`/rooms/` + itemDetails.name}
                     className="btn btn-primary w-100"
                   >
                     اختر غرفه

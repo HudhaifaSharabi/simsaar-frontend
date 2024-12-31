@@ -13,6 +13,7 @@ import Footer from "@/components/home/footer";
 import ScrollTop from "@/components/home/scrollTop";
 
 export default function Home() {
+
   return (
     <>
       <Navbar navClass="defaultscroll sticky" menuClass="navigation-menu" />
@@ -137,4 +138,5 @@ export default function Home() {
       <ScrollTop />
     </>
   );
+  
 }
