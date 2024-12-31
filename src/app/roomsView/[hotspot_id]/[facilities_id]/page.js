@@ -47,7 +47,7 @@ const RoomPage = ({ params }) => {
   useEffect(() => {
     const loadRoom = async () => {
       try {
-        const response = await fetch(`http://localhost:86/api/resource/Hotspot/${hotspot_id}?expand=1`);
+        const response = await fetch(`/api/resource/Hotspot/${hotspot_id}?expand=1`);
         const result = await response.json();
 
         if (!response.ok) throw new Error(result.message || "Failed to fetch room data");
@@ -67,7 +67,7 @@ const RoomPage = ({ params }) => {
   useEffect(() => {
     const loadPlaces = async () => {
       try {
-        const response = await fetch(`http://localhost:86/api/resource/Places?filters=[["facilitie","=","${facilities_id}"]]&fields=["*"]`);
+        const response = await fetch(`/api/resource/Places?filters=[["facilitie","=","${facilities_id}"]]&fields=["*"]`);
         const result = await response.json();
 
         if (!response.ok) throw new Error(result.message || "Failed to fetch places");
@@ -88,7 +88,7 @@ const RoomPage = ({ params }) => {
   const handleHotspotClick = useCallback(async (hotspot) => {
     const targetRoomId = hotspot.hotspot;
     try {
-      const response = await fetch(`http://localhost:86/api/resource/Hotspot/${targetRoomId}?expand=1`);
+      const response = await fetch(`/api/resource/Hotspot/${targetRoomId}?expand=1`);
       const result = await response.json();
 
       if (response.ok) {
