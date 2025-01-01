@@ -1,12 +1,17 @@
 import { Tajawal } from "next/font/google";
+import "@/styles/globals.css";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "leaflet/dist/leaflet.css";
+
 import "bootstrap/dist/css/bootstrap.css";
 import "@/assets/scss/style.scss";
 import "@/assets/css/materialdesignicons.min.css";
 import { DataProvider } from "@/context/DataContext";
+import { NextUIProvider } from "@nextui-org/react";
+
 
 const league = Tajawal({
   subsets: ["latin"],
@@ -23,7 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar">
       <body className={league.variable}>
-        <DataProvider>{children}</DataProvider>
+        <DataProvider> <NextUIProvider>{children}</NextUIProvider></DataProvider>
       </body>
     </html>
   );
