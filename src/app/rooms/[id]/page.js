@@ -9,8 +9,10 @@ import animationData from "@/assets/animations/loading-animation.json"; // Adjus
 import { FiHome, FiHeart, FiCamera } from "@/assets/icons/vander";
 import SelectOne from "@/components/home/select/selectOne";
 import { useData } from "@/context/DataContext";
+
 import {
   Modal,
+
   ModalContent,
   ModalHeader,
   ModalBody,
@@ -96,6 +98,7 @@ export default function Rooms({ params }) {
 
   // Total number of pages
   const totalPages = Math.ceil(rooms.length / itemsPerPage);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
     <>
