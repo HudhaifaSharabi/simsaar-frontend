@@ -34,7 +34,6 @@ export const types = [
   ];
 export const HeartIcon = ({size, height, width, ...props}) => {
     // avoid passing non-DOM attributes to svg
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {isSelected, isIndeterminate, disableAnimation, ...otherProps} = props;
   
     return (
