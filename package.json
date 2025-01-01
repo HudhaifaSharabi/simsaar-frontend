@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.4",
+    "@nextui-org/modal": "^2.2.6",
+    "@nextui-org/system": "^2.4.5",
+    "@nextui-org/theme": "^2.4.4",
     "@react-google-maps/api": "^2.20.3",
     "@react-spring/web": "^9.7.5",
     "@react-three/drei": "^9.120.4",
