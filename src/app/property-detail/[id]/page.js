@@ -189,9 +189,7 @@ export default function PropertyDetails({ params }) {
                             </div> */}
 
                 <div className="d-flex mt-3">
-                  <Link href="#" className="btn btn-primary w-100 me-2">
-                    احجز الان
-                  </Link>
+                  
                   <Link href={`/roomsView/${itemDetails.default_hotspot}/${itemDetails.name}`} className="btn btn-primary w-100">
                     عرض واقعي
                   </Link>

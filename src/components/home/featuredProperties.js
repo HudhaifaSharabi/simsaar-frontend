@@ -36,150 +36,135 @@ export default function FuaturedProperties() {
       <div className="row g-4 mt-0 justify-content-end">
         {data.slice(0, 8).map((item, index) => {
           return (
-            <div className="col-lg-6 col-12" key={index}>
-              <div className="card property property-list border-0 shadow position-relative overflow-hidden rounded-3 rtl">
-                <div className="d-md-flex">
-                  <div className="property-image position-relative overflow-hidden shadow flex-md-shrink-0 rounded-3 m-2">
-                    <Image
-                      src={process.env.NEXT_PUBLIC_SERVER_API + item.image}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: "100%", height: "auto" }}
-                      className="img-fluid h-100 w-100"
-                      alt=""
-                    />
-                    <ul className="list-unstyled property-icon">
-                      <li className="">
-                        <Link
-                          href="#"
-                          className="btn btn-sm btn-icon btn-pills btn-primary"
-                        >
-                          <FiHome className="icons" />
-                        </Link>
-                      </li>
-                      <li className="mt-1">
-                        <Link
-                          href="#"
-                          className="btn btn-sm btn-icon btn-pills btn-primary"
-                        >
-                          <FiHeart className="icons" />
-                        </Link>
-                      </li>
-                      <li className="mt-1">
-                        <Link
-                          href="#"
-                          className="btn btn-sm btn-icon btn-pills btn-primary"
-                        >
-                          <FiCamera className="icons" />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="card-body content p-3">
-                    <Link
-                      href={`/property-detail/${item.name}`}
-                      className="title fs-5 text-dark fw-medium"
-                    >
-                      {item.facilitie_name}
-                    </Link>
-                    <br />
-                    <i className="mdi mdi-map-marker fs-5 me-2 text-primary"></i>
-                    <span className="text-muted rtl-direction">
-                      {item.formatted_address}{" "}
-                    </span>
-
-                    <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
-                      <li className="d-flex align-items-center me-3">
-                        <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
-                        <span className="text-muted rtl-direction">
-                          {item.bed_room}
-                        </span>
-                      </li>
-
-                      <li className="d-flex align-items-center me-3">
-                        <i className="mdi mdi-wifi fs-5 me-2 text-primary"></i>
-                        <span className="text-muted rtl-direction">
-                          {item.wifi_availability == 1
-                            ? "متوفر" 
-                            : "غير متوفر"}
-                        </span>
-                      </li>
-
-                      <li className="d-flex align-items-center me-3">
-                        <i className="mdi mdi-car fs-5 me-2 text-primary"></i>
-                        <span className="text-muted rtl-direction">
-                          {item.parking_availability == 1
-                            ? "متوفر"
-                            : "غير متوفر"}
-                        </span>
-                      </li>
-                    </ul>
-                    <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
-                      <li className="d-flex align-items-center me-3">
-                        <i className="mdi mdi-pool fs-5 me-2 text-primary"></i>
-                        <span className="text-muted rtl-direction">
-                          {item.pool_availability == 1
-                            ? "متوفر"
-                            : "غير متوفر"}
-                        </span>
-                      </li>
-
-                      <li className="d-flex align-items-center me-3">
-                        <i className="mdi mdi-air-conditioner fs-5 me-2 text-primary"></i>
-                        <span className="text-muted rtl-direction">
-                          {item.air_condition == 1 ? "متوفر" : "غير متوفر"}
-                        </span>
-                      </li>
-
-                      <li className="d-flex align-items-center me-3">
+            <Link href={`/property-detail/${item.name}`} key="index"  className="rtl-direction" >
+            <div className="col-lg-4 col-md-6 col-12" key={index}>
+                <div className="card property border-0 shadow position-relative overflow-hidden rounded-3">
+                    <div className="property-image position-relative overflow-hidden shadow">
                         <Image
-                          src="/images/svg/bed-plus.svg"
-                          className="fs-5 me-2 text-primary"
-                          alt="Extra Bed Facility"
-                          width={24} // Adjust width as needed
-                          height={24} // Adjust height as needed
+                            src={process.env.NEXT_PUBLIC_SERVER_API + item.image}
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            style={{ width: '100%', height: 'auto' }}
+                            className="img-fluid"
+                            alt={item.title}
                         />
-                        <span className="text-muted rtl-direction">
-                          {item.extra_bedFacility == 1
-                            ? "متوفر"
-                            : "غير متوفر"}
-                        </span>
-                      </li>
-                    </ul>
-                    <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                      <li className="list-inline-item mb-0">
-                        <span className="text-muted"> الاسعار </span>
-                        <p className="fw-medium mb-0">{item.price}</p>
-                      </li>
-                      <li className="list-inline-item mb-0 text-muted">
-                        <span className="text-muted">التقييم</span>
-                        <ul className="fw-medium text-warning list-unstyled mb-0">
-                          <li className="list-inline-item mb-0">
-                            <i className="mdi mdi-star"></i>
-                          </li>
-                          <li className="list-inline-item mb-0">
-                            <i className="mdi mdi-star"></i>
-                          </li>
-                          <li className="list-inline-item mb-0">
-                            <i className="mdi mdi-star"></i>
-                          </li>
-                          <li className="list-inline-item mb-0">
-                            <i className="mdi mdi-star"></i>
-                          </li>
-                          <li className="list-inline-item mb-0">
-                            <i className="mdi mdi-star"></i>
-                          </li>
-                          <li className="list-inline-item mb-0 text-dark">
-                            5.0(30)
-                          </li>
+                        <ul className="list-unstyled property-icon">
+                            <li>
+                                <Link href="#" className="btn btn-sm btn-icon btn-pills btn-primary">
+                                    <FiHome className="icons" />
+                                </Link>
+                            </li>
+                            <li className="mt-1">
+                                <Link href="#" className="btn btn-sm btn-icon btn-pills btn-primary">
+                                    <FiHeart className="icons" />
+                                </Link>
+                            </li>
+                            <li className="mt-1">
+                                <Link href="#" className="btn btn-sm btn-icon btn-pills btn-primary">
+                                    <FiCamera className="icons" />
+                                </Link>
+                            </li>
                         </ul>
-                      </li>
-                    </ul>
-                  </div>
+                    </div>
+                    <div className="card-body content p-4">
+                        
+                        <div className="title fs-5 text-dark fw-medium rtl-direction">
+                            <p className="">{item.facilitie_name}</p>
+                            <span className="text-muted "><small>{item.formatted_address}</small></span>
+                        </div>
+                    
+                        <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
+                        <li className="d-flex align-items-center me-3">
+                            <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
+                            <span className="text-muted rtl-direction">
+                            {item.bed_room}
+                            </span>
+                        </li>
+
+                        <li className="d-flex align-items-center me-3">
+                            <i className="mdi mdi-wifi fs-5 me-2 text-primary"></i>
+                            <span className="text-muted rtl-direction">
+                            {item.wifi_availability == 1
+                                ? "متوفر" 
+                                : "غير متوفر"}
+                            </span>
+                        </li>
+
+                        <li className="d-flex align-items-center me-3">
+                            <i className="mdi mdi-car fs-5 me-2 text-primary"></i>
+                            <span className="text-muted rtl-direction">
+                            {item.parking_availability == 1
+                                ? "متوفر"
+                                : "غير متوفر"}
+                            </span>
+                        </li>
+                        </ul>
+                        <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
+                        <li className="d-flex align-items-center me-3">
+                            <i className="mdi mdi-pool fs-5 me-2 text-primary"></i>
+                            <span className="text-muted rtl-direction">
+                            {item.pool_availability == 1
+                                ? "متوفر"
+                                : "غير متوفر"}
+                            </span>
+                        </li>
+
+                        <li className="d-flex align-items-center me-3">
+                            <i className="mdi mdi-air-conditioner fs-5 me-2 text-primary"></i>
+                            <span className="text-muted rtl-direction">
+                            {item.air_condition == 1 ? "متوفر" : "غير متوفر"}
+                            </span>
+                        </li>
+
+                        <li className="d-flex align-items-center me-3">
+                            <Image
+                            src="/images/svg/bed-plus.svg"
+                            className="fs-5 me-2 text-primary"
+                            alt="Extra Bed Facility"
+                            width={24} // Adjust width as needed
+                            height={24} // Adjust height as needed
+                            />
+                            <span className="text-muted rtl-direction">
+                            {item.extra_bedFacility == 1
+                                ? "متوفر"
+                                : "غير متوفر"}
+                            </span>
+                        </li>
+                        </ul>
+                        <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                            <li className="list-inline-item mb-0">
+                                <span className="text-muted"> الاسعار </span>
+                                <p className="fw-medium mb-0">{item.price}</p>
+                            </li>
+                            <li className="list-inline-item mb-0 text-muted">
+                                <span className="text-muted">التقييم</span>
+                                <ul className="fw-medium text-warning list-unstyled mb-0">
+                                <li className="list-inline-item mb-0">
+                                    <i className="mdi mdi-star"></i>
+                                </li>
+                                <li className="list-inline-item mb-0">
+                                    <i className="mdi mdi-star"></i>
+                                </li>
+                                <li className="list-inline-item mb-0">
+                                    <i className="mdi mdi-star"></i>
+                                </li>
+                                <li className="list-inline-item mb-0">
+                                    <i className="mdi mdi-star"></i>
+                                </li>
+                                <li className="list-inline-item mb-0">
+                                    <i className="mdi mdi-star"></i>
+                                </li>
+                                <li className="list-inline-item mb-0 text-dark">
+                                    5.0(30)
+                                </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </div>
+            </Link>
           );
         })}
 

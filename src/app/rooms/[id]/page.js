@@ -7,8 +7,10 @@ import ScrollTop from "@/components/home/scrollTop";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from "@/assets/animations/loading-animation.json"; // Adjust the path accordingly
 import { FiHome, FiHeart, FiCamera } from "@/assets/icons/vander";
-import SelectOne from "@/components/home/select/selectOne";
+// import SelectOne from "@/components/home/select/selectOne";
 import { useData } from "@/context/DataContext";
+import {today, getLocalTimeZone, isWeekend} from "@internationalized/date";
+import {useLocale,I18nProvider} from "@react-aria/i18n";
 
 import {
   Modal,
@@ -18,12 +20,40 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
   Checkbox,
   Input,
   Link,
+  RangeCalendar,
+  Select,
+  SelectItem
 } from "@nextui-org/react";
 
+export const types = [
+    {key: "family", label: "عائله"},
+    
+  ];
+export const HeartIcon = ({size, height, width, ...props}) => {
+    // avoid passing non-DOM attributes to svg
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {isSelected, isIndeterminate, disableAnimation, ...otherProps} = props;
+  
+    return (
+      <svg
+        fill="fill"
+        height={size || height || 24}
+        viewBox="0 0 24 24"
+        width={size || width || 24}
+        xmlns="http://www.w3.org/2000/svg"
+        {...otherProps}
+      >
+        <path
+          d="M12.62 20.81c-.34.12-.9.12-1.24 0C8.48 19.82 2 15.69 2 8.69 2 5.6 4.49 3.1 7.56 3.1c1.82 0 3.43.88 4.44 2.24a5.53 5.53 0 0 1 4.44-2.24C19.51 3.1 22 5.6 22 8.69c0 7-6.48 11.13-9.38 12.12Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  };
+  
 export default function Rooms({ params }) {
 
   const { id } = params;
@@ -35,6 +65,7 @@ export default function Rooms({ params }) {
   const [currentPage, setCurrentPage] = useState(1); // State for the current page
   const itemsPerPage = 9; // Show 10 items per page
   const [isOpen, setIsOpen] = useState(false);
+  let {locale} = useLocale();
 
   useEffect(() => {
     const fetchRoomData = async () => {
@@ -101,52 +132,55 @@ export default function Rooms({ params }) {
   // Total number of pages
   const totalPages = Math.ceil(rooms.length / itemsPerPage);
 
+  let now = today(getLocalTimeZone());
 
+  let disabledRanges = [
+    [now, now.add({days: 5})],
+    [now.add({days: 14}), now.add({days: 16})],
+    [now.add({days: 23}), now.add({days: 24})],
+  ];
+
+
+  let isDateUnavailable = (date) =>
+    isWeekend(date, locale) ||
+    disabledRanges.some(
+      (interval) => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0,
+    );
   return (
     <>
 
-    <Modal isOpen={isOpen} placement="top-center" onOpenChange={setIsOpen}>
+    <Modal className="rtl" isOpen={isOpen} placement="top-center" onOpenChange={setIsOpen}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">احجز الان</ModalHeader>
               <ModalBody>
-                <Input
-                  // endContent={
-                  //   // <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                  // }
-                  label="Email"
-                  placeholder="Enter your email"
-                  variant="bordered"
-                />
-                <Input
-                  // endContent={
-                  //   // <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                  // }
-                  label="Password"
-                  placeholder="Enter your password"
-                  type="password"
-                  variant="bordered"
-                />
+              <I18nProvider locale="ar-US">
+                <RangeCalendar aria-label="التاريخ (التقويم الميلادي)" isDateUnavailable={isDateUnavailable} />
+              </I18nProvider>
+
+                <div className="flex w-full flex-wrap md:flex-nowrap gap-4 ">
+                <Select  label="اختر فئه" >
+                    {types.map((type) => (
+                    <SelectItem  key={type.key}>{type.label}</SelectItem>
+                    ))}
+                </Select>
+                    <Input label="عدد الاشخاص" type="number" min={1} />
+                    <Input label="عدد الاطفال" type="number" min={1} />
+                </div>
                 <div className="flex py-2 px-1 justify-between">
-                  <Checkbox
-                    classNames={{
-                      label: "text-small",
-                    }}
-                  >
-                    Remember me
-                  </Checkbox>
-                  <Link color="primary" href="#" size="sm">
-                    Forgot password?
-                  </Link>
+                <Checkbox color="warning" icon={<HeartIcon />} required>
+                    الموافقه على سياسات المكان
+                </Checkbox>
+                 
                 </div>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="flat" onPress={onClose}>
-                  Close
+                  اغلاق
                 </Button>
                 <Button color="primary" onPress={onClose}>
-                  Sign in
+                    حجز
                 </Button>
               </ModalFooter>
             </>
@@ -255,19 +289,31 @@ export default function Rooms({ params }) {
                         {item.name1}
                       </Link>
 
-                      <div className="text-center mt-3">
-                      <Button onPress={() => setIsOpen(true)}>Open Modal</Button>
-
-                      </div>
-                      <div className="text-center mt-3">
+                      
+                      
+                      <div className="flex gap-4 items-center mt-3">
+                      <Button  color="primary"
+                            onPress={() => setIsOpen(true)}
+                          
+                        >
+                          حجز  الغرفه
+                        </Button>
                         <Link
                           href={`/roomsView/${item.default_hotspot}/${id}/`} // Adjust the link as needed
 
-                          className="btn btn-primary  w-100"
+                          
                         >
-                          عرض الغرفه التفاعلي
+                            <Button
+                            color="primary"
+                            >
+                            
+                            عرض الغرفه التفاعلي
+                            
+                            </Button>
                         </Link>
+                        
                       </div>
+                     
                     </div>
                   </div>
                 </div>
