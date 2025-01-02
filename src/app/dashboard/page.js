@@ -6,23 +6,24 @@ export default function Dashboard() {
   const cookieStore = cookies(); // Access cookies on the server-side
   const sid = cookieStore.get('sid'); // Get the sid cookie
 
-  if (sid) {
+  if (!sid) {
     // If the sid cookie is not found, redirect to login page
     redirect('/auth-login');
   }
 
   return (
-    <div className="container text-center mt-5">
-      <h1>مرحبًا بك في لوحة التحكم</h1>
-      <button
-        className="btn btn-danger mt-3"
-        onClick={() => {
-          // Simulate logging out by removing the sid cookie on the backend
-          redirect('/auth-login'); // Redirect to login page after logout
-        }}
-      >
-        تسجيل الخروج
-      </button>
-    </div>
+    <section className="bg-half-170 d-table w-100" style={{ backgroundImage: "url('/images/bg/03.jpg')" }}>
+                <div className="bg-overlay bg-gradient-overlay-2"></div>
+                <div className="container">
+                    <div className="row mt-5 justify-content-center">
+                        <div className="col-12">
+                            <div className="title-heading text-center">
+                                <p className="text-white-50 para-desc mx-auto mb-0">عرض</p>
+                                <h5 className="heading fw-semibold mb-0 sub-heading text-white title-dark">القائمة</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
   );
 }
