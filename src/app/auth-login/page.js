@@ -36,6 +36,7 @@ export default function AuthLogin() {
         } catch (error) {
             setMessage(`خطأ: ${error.message}`);
         }
+        console.log(document.cookie);
     };
     return (
         <section className="bg-home zoom-image d-flex align-items-center ">
