@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 export default function AuthLogin() {
     const [username, setUsername] = useState("");
@@ -36,7 +37,7 @@ export default function AuthLogin() {
         } catch (error) {
             setMessage(`خطأ: ${error.message}`);
         }
-        console.log(document.cookie);
+        console.log(Cookies.get());
     };
     return (
         <section className="bg-home zoom-image d-flex align-items-center ">
