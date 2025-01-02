@@ -6,7 +6,7 @@ export default function Dashboard() {
   const cookieStore = cookies(); // Access cookies on the server-side
   const sid = cookieStore.get('sid'); // Get the sid cookie
 
-  if (!sid) {
+  if (sid) {
     // If the sid cookie is not found, redirect to login page
     redirect('/auth-login');
   }
