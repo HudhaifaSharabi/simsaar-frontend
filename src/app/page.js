@@ -78,6 +78,7 @@ import ScrollTop from "@/components/home/scrollTop";
 export default function Home() {
   return (
     <>
+    
       <Navbar menuClass="navigation-menu nav-right" />
       <section className="position-relative mt-5 pt-4">
         <div className="container-fluid px-md-4 px-2 mt-2">
