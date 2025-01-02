@@ -25,6 +25,8 @@ export default function AuthLogin() {
             });
     
             if (response.ok) {
+                const sid = Cookies.get("sid");
+                console.log(sid);
                 setMessage("تم تسجيل الدخول بنجاح!");
                 console.log("تم تسجيل الدخول.");
             } else {

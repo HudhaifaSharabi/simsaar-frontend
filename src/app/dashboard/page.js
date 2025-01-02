@@ -8,6 +8,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const sid = Cookies.get("sid");
+    
     if (!sid) {
       router.push("/auth-login"); // Redirect to login if no session exists
     }
