@@ -66,17 +66,19 @@ const Scene = ({ roomData, currentTexture, onHotspotClick }) => {
           toneMapped={false}
         />
       </mesh>
-
-      {roomData.hotspots?.map((hotspot) => (
-        <Hotspot
-          key={hotspot.name}
-          hotspot={hotspot}
-          camera={camera}
-          controls={controlsRef.current}
-          onClick={onHotspotClick}
-        />
-      ))}
-
+  
+      {roomData.hotspots
+        ?.filter((hotspot) => hotspot.position[1] > 0.5) // Only show hotspots above a certain height (e.g., 0.5)
+        .map((hotspot) => (
+          <Hotspot
+            key={hotspot.name}
+            hotspot={hotspot}
+            camera={camera}
+            controls={controlsRef.current}
+            onClick={onHotspotClick}
+          />
+        ))}
+  
       <OrbitControls
         ref={controlsRef}
         enableDamping
@@ -90,6 +92,7 @@ const Scene = ({ roomData, currentTexture, onHotspotClick }) => {
       />
     </>
   );
+  
 };
 
 // Main Viewer
