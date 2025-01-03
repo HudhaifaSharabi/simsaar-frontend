@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Cookies from "js-cookie";
-
+import { useRouter } from "next/navigation";
 export default function AuthLogin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-
+    const router = useRouter();
     const handleLogin = async (e) => {
         e.preventDefault();
     
@@ -30,6 +30,7 @@ export default function AuthLogin() {
                 console.log(sid);
                 setMessage("تم تسجيل الدخول بنجاح!");
                 console.log("تم تسجيل الدخول.");
+                router.back()
             } else {
                 const error = await response.json();
                 setMessage(`فشل تسجيل الدخول: ${error.message}`);

@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["localhost", "simsaar-backend.vercel.app","65.20.79.47"],
+    domains: ["localhost", "simsaar-backend.vercel.app","simsaarerp.net"],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "65.20.79.47",
-        port: "86",
+        protocol: "https",
+        hostname: "simsaarerp.net",
+        port: "80",
         pathname: "/files/**",
       },
     ],
@@ -15,11 +15,11 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://65.20.79.47//api/:path*', // Frappe API endpoint
+        destination: 'https://simsaarerp.net//api/:path*', // Frappe API endpoint
       },
       {
         source: '/files/:path*',
-        destination: 'http://65.20.79.47//files/:path*', // Frappe files endpoint
+        destination: 'https://simsaarerp.net//files/:path*', // Frappe files endpoint
       },
     ];
   },
