@@ -69,7 +69,7 @@ const Hotspot = ({ hotspot, onClick, size = 30, transitioning }) => {
         />
       </mesh>
 
-      {hovered && (
+      {/* {hovered && (
         <Html center position={[0, size * 0.8, 0]}>
           <div className={styles.tooltip} style={{ 
             transform: `scale(${size/20})`,
@@ -80,7 +80,7 @@ const Hotspot = ({ hotspot, onClick, size = 30, transitioning }) => {
             <div className={styles.tooltipSubtext}>انقر للانتقال</div>
           </div>
         </Html>
-      )}
+      )} */}
     </group>
   );
 };
