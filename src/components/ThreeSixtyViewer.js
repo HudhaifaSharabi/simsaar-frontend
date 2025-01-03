@@ -66,33 +66,32 @@ const Scene = ({ roomData, currentTexture, onHotspotClick }) => {
           toneMapped={false}
         />
       </mesh>
-  
-      {roomData.hotspots
-        ?.filter((hotspot) => hotspot.position[1] > 0.5) // Only show hotspots above a certain height (e.g., 0.5)
-        .map((hotspot) => (
-          <Hotspot
-            key={hotspot.name}
-            hotspot={hotspot}
-            camera={camera}
-            controls={controlsRef.current}
-            onClick={onHotspotClick}
-          />
-        ))}
-  
-      <OrbitControls
-        ref={controlsRef}
-        enableDamping
-        dampingFactor={0.1}
-        rotateSpeed={0.8}
-        maxDistance={500}
-        minDistance={0.5}
-        target={[0, 0, 0]}
-        makeDefault
-        args={[camera, gl.domElement]}
-      />
+
+      {roomData.hotspots?.map((hotspot) => (
+        <Hotspot
+          key={hotspot.name}
+          hotspot={hotspot}
+          camera={camera}
+          controls={controlsRef.current}
+          onClick={onHotspotClick}
+        />
+      ))}
+
+    <OrbitControls
+      ref={controlsRef}
+      enableDamping
+      dampingFactor={0.1}
+      rotateSpeed={0.8}
+      maxDistance={500}
+      minDistance={0.5}
+      target={[0, 0, 0]}
+      maxPolarAngle={Math.PI / 2 - 0.1} // تحديد أقصى زاوية للأسفل
+      minPolarAngle={Math.PI / 4}      // تحديد أدنى زاوية للأعلى
+      makeDefault
+      args={[camera, gl.domElement]}
+    />
     </>
   );
-  
 };
 
 // Main Viewer
