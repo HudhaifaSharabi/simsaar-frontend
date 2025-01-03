@@ -85,8 +85,8 @@ const Scene = ({ roomData, currentTexture, onHotspotClick }) => {
       maxDistance={500}
       minDistance={0.5}
       target={[0, 0, 0]}
-      maxPolarAngle={Math.PI / 2 - 0.1} // تحديد أقصى زاوية للأسفل
-      minPolarAngle={Math.PI / 4}      // تحديد أدنى زاوية للأعلى
+      maxPolarAngle={Math.PI / 3 } // تحديد أقصى زاوية للأسفل
+      // minPolarAngle={Math.PI / 4}      // تحديد أدنى زاوية للأعلى
       makeDefault
       args={[camera, gl.domElement]}
     />
