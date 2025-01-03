@@ -1,5 +1,6 @@
 import { Tajawal } from "next/font/google";
 import "@/styles/globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "swiper/css";
 import "swiper/css/pagination";
