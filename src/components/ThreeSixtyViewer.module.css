@@ -220,7 +220,7 @@
   }
 
   .loadingText {
-    font-size: 1rem;
+    font-size: 1rem; 
   }
 }
 @media (max-width: 768px) {

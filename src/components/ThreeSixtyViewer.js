@@ -13,17 +13,26 @@ import Hotspot from "@/components/Hotspot";
 import styles from "@/components/ThreeSixtyViewer.module.css";
 import { texturePreloader } from "@/utils/texturePreloader";
 import { useRouter } from "next/navigation";
+import dynamic from 'next/dynamic';
+
+const Player = dynamic(() => 
+  import('@lottiefiles/react-lottie-player').then((mod) => mod.Player), 
+  { ssr: false }
+);
+
 
 // Loading Screen
 const LoadingScreen = () => {
   const { progress } = useProgress();
   return (
-    <Html center>
-      <div className={styles.loadingScreen}>
-        <div className={styles.loadingSpinner}></div>
-        <div className={styles.loadingProgress}>Loading... {progress.toFixed(0)}%</div>
-      </div>
-    </Html>
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+      {mounted && <Player
+        autoplay
+        loop
+        src="/animations/loading-animation.json"
+        style={{ height: "150px", width: "150px" }}
+      />}
+  </div>
   );
 };
 
