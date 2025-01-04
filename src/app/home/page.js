@@ -1,30 +1,47 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import Navbar from "@/components/home/navbar";
 import TextAnimation from "@/components/home/textAnimation";
 import SelectThree from "@/components/home/select/selectThree";
-import VideoTwo from "@/components/home/modalVideo/videoTwo";
 import AboutCounter from "@/components/home/counter/aboutCounter";
 import PropertyType from "@/components/home/propertyTypes";
 import AboutUs from "@/components/home/about";
-import Featuredproperties from "@/components/home/featuredProperties";
 import Footer from "@/components/home/footer";
 import ScrollTop from "@/components/home/scrollTop";
 
-export default function Home() {
+// Dynamically import components with loading fallback
+const FeaturedProperties = dynamic(
+  () => import('@/components/home/featuredProperties'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "50vh" }}>
+        Loading...
+      </div>
+    ),
+  }
+);
 
+const VideoTwo = dynamic(
+  () => import('@/components/home/modalVideo/videoTwo'),
+  {
+    ssr: false,
+    loading: () => <div>Loading...</div>,
+  }
+);
+
+export default function Home() {
   return (
     <>
       <Navbar navClass="defaultscroll sticky" menuClass="navigation-menu" />
       <section className="position-relative mt-5 pt-4">
         <div className="container-fluid px-md-4 px-2 mt-2">
-          <div
-            className="bg-home-one d-table w-100 shadow rounded-3 overflow-hidden"
-            id="home"
-          >
+          <div className="bg-home-one d-table w-100 shadow rounded-3 overflow-hidden" id="home">
             <div
-              className="bg-overlay image-wrap "
+              className="bg-overlay image-wrap"
               id="hero-images"
               style={{ backgroundImage: "url('/images/bg/01.webp')" }}
             ></div>
@@ -45,10 +62,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section className="section">
         <div className="container rtl-direction">
           <SelectThree />
         </div>
+
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6">
@@ -63,9 +82,7 @@ export default function Home() {
                     className="img-fluid rounded-top-pill rounded-5"
                     alt=""
                   />
-
                   <VideoTwo />
-
                   <div className="position-absolute top-0 start-0 z-n1">
                     <Image
                       src="/images/svg/dots.svg"
@@ -126,17 +143,18 @@ export default function Home() {
           </div>
           <PropertyType />
         </div>
+
         <div className="container mt-100 mt-60">
-          <Featuredproperties />
+          <FeaturedProperties />
         </div>
 
         <div className="container mt-100 mt-60">
           <AboutUs />
         </div>
       </section>
+
       <Footer />
       <ScrollTop />
     </>
   );
-  
 }

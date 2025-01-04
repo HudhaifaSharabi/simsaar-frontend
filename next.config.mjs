@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["localhost", "simsaar-backend.vercel.app","simsaarerp.net"],
+    domains: ["localhost","simsaarerp.net"],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "simsaarerp.net",
-        port: "80",
-        pathname: "/files/**",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

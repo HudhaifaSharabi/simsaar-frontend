@@ -108,3 +108,24 @@
   }
 
 }
+
+.editorControls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.saveButton {
+  background: #2a4e4e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.saveButton:hover {
+  background: #1a3e3e;
+}
