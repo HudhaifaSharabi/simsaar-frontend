@@ -6,42 +6,30 @@ class TexturePreloader {
     this.cache = new Map();
   }
 
-  async preload(url) {
+  preload(url) {
     if (this.cache.has(url)) {
-      return this.cache.get(url);
+      return Promise.resolve(this.cache.get(url));
     }
 
-    try {
-      const texture = await new Promise((resolve, reject) => {
-        this.textureLoader.load(
-          url,
-          (texture) => {
-            texture.minFilter = THREE.LinearMipmapLinearFilter;
-            texture.magFilter = THREE.LinearFilter;
-            texture.anisotropy = 16;
-            texture.generateMipmaps = true;
-            texture.needsUpdate = true;
-            resolve(texture);
-          },
-          undefined,
-          (error) => reject(error)
-        );
-      });
-
-      this.cache.set(url, texture);
-      return texture;
-    } catch (error) {
-      console.error(`Failed to preload texture: ${url}`, error);
-      throw error;
-    }
+    return new Promise((resolve, reject) => {
+      this.textureLoader.load(
+        url,
+        (texture) => {
+          texture.needsUpdate = true;
+          this.cache.set(url, texture);
+          resolve(texture);
+        },
+        undefined,
+        (error) => {
+          console.error('Error loading texture:', error);
+          reject(error);
+        }
+      );
+    });
   }
 
-  async preloadMultiple(urls) {
-    return Promise.all(urls.map((url) => this.preload(url)));
-  }
-
-  get(url) {
-    return this.cache.get(url);
+  clear() {
+    this.cache.clear();
   }
 }
 

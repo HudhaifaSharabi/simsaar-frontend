@@ -10,13 +10,19 @@ import { texturePreloader } from "@/utils/texturePreloader";
 
 const Scene = ({ roomData, currentTexture, onUpdateHotspot }) => {
   const sphereRef = useRef();
-  const controlsRef = useRef();
-  const { camera } = useThree();
+  
+  useEffect(() => {
+    if (currentTexture && sphereRef.current) {
+      // Force material update
+      sphereRef.current.material.map = currentTexture;
+      sphereRef.current.material.needsUpdate = true;
+    }
+  }, [currentTexture]);
 
   return (
     <>
       <mesh ref={sphereRef} scale={[-1, 1, 1]} rotation={[0, Math.PI / 2, 0]}>
-        <sphereGeometry args={[500, 180, 90]} />
+        <sphereGeometry args={[500, 60, 40]} />
         <meshBasicMaterial
           map={currentTexture}
           side={THREE.BackSide}
@@ -33,7 +39,6 @@ const Scene = ({ roomData, currentTexture, onUpdateHotspot }) => {
       ))}
 
       <OrbitControls
-        ref={controlsRef}
         enableDamping
         dampingFactor={0.1}
         rotateSpeed={0.8}
@@ -49,18 +54,48 @@ const Scene = ({ roomData, currentTexture, onUpdateHotspot }) => {
 const ThreeSixtyEditorViewer = ({ roomData, onSave }) => {
   const [currentTexture, setCurrentTexture] = useState(null);
   const [hotspots, setHotspots] = useState(roomData.hotspots || []);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
 
   useEffect(() => {
-    const loadCurrentTexture = async () => {
+    let isMounted = true;
+
+    const loadTexture = async () => {
+      setIsLoading(true);
+      setLoadError(null);
+      
       try {
         const texture = await texturePreloader.preload(roomData.image360);
-        setCurrentTexture(texture);
+        
+        // Only update state if component is still mounted
+        if (isMounted) {
+          texture.encoding = THREE.sRGBEncoding;
+          setCurrentTexture(texture);
+          setIsLoading(false);
+        }
       } catch (error) {
         console.error("Error loading texture:", error);
+        if (isMounted) {
+          setLoadError("Failed to load panorama image");
+          setIsLoading(false);
+        }
       }
     };
-    loadCurrentTexture();
+
+    loadTexture();
+
+    // Cleanup function
+    return () => {
+      isMounted = false;
+    };
   }, [roomData.image360]);
+
+  // Debug logging
+  useEffect(() => {
+    console.log('Loading state:', isLoading);
+    console.log('Current texture:', currentTexture);
+    console.log('Load error:', loadError);
+  }, [isLoading, currentTexture, loadError]);
 
   const handleUpdateHotspot = (index, newPosition) => {
     const updatedHotspots = [...hotspots];
@@ -73,6 +108,14 @@ const ThreeSixtyEditorViewer = ({ roomData, onSave }) => {
     setHotspots(updatedHotspots);
   };
 
+  if (loadError) {
+    return (
+      <div className={styles.errorContainer}>
+        <div className={styles.errorMessage}>{loadError}</div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.viewerContainer}>
       <div className={styles.editorControls}>
@@ -80,6 +123,7 @@ const ThreeSixtyEditorViewer = ({ roomData, onSave }) => {
           Save Positions
         </button>
       </div>
+      
       <Canvas
         camera={{
           position: [0, 0, 0.1],
@@ -87,6 +131,7 @@ const ThreeSixtyEditorViewer = ({ roomData, onSave }) => {
           near: 0.1,
           far: 1000,
         }}
+        gl={{ preserveDrawingBuffer: true }}
       >
         <Suspense fallback={null}>
           <Scene
@@ -96,6 +141,13 @@ const ThreeSixtyEditorViewer = ({ roomData, onSave }) => {
           />
         </Suspense>
       </Canvas>
+
+      {isLoading && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingSpinner}></div>
+          <div>Loading panorama...</div>
+        </div>
+      )}
     </div>
   );
 };

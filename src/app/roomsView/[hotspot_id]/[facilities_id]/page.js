@@ -19,6 +19,8 @@ const RoomPage = ({ params }) => {
   const [preloadedTextures, setPreloadedTextures] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState({ from: null, to: null });
 
   const preloadTexture = useCallback(async (imageId) => {
     if (!imageId || preloadedTextures[imageId]) return;
@@ -87,17 +89,41 @@ const RoomPage = ({ params }) => {
 
   const handleHotspotClick = useCallback(async (hotspot) => {
     const targetRoomId = hotspot.hotspot;
+    
     try {
-      const response = await fetch(`/api/resource/Hotspot/${targetRoomId}?expand=1`);
+      // Start loading the next room data and texture immediately
+      const roomPromise = fetch(`/api/resource/Hotspot/${targetRoomId}?expand=1`);
+      
+      // Set transition state with a longer path
+      setIsTransitioning(true);
+      setTransitionDirection({
+        from: {
+          x: hotspot.position_x * 0.2, // Reduce initial movement to 20% of hotspot distance
+          y: hotspot.position_y * 0.2,
+          z: hotspot.position_z * 0.2
+        },
+        to: {
+          x: hotspot.position_x * 0.8, // Move to 80% of the distance
+          y: hotspot.position_y * 0.8,
+          z: hotspot.position_z * 0.8
+        }
+      });
+
+      // Wait for room data
+      const response = await roomPromise;
       const result = await response.json();
 
-      if (response.ok) {
-        await preloadTexture(result.data.image360);
-        router.push(`/roomsView/${targetRoomId}/${facilities_id}`);
-      }
+      if (!response.ok) throw new Error('Failed to load room data');
+
+      // Preload the texture while still moving
+      await preloadTexture(result.data.image360);
+      
+      // Complete the transition and navigate
+      router.push(`/roomsView/${targetRoomId}/${facilities_id}`);
+
     } catch (error) {
-      console.error('Error preloading next room:', error);
-      router.push(`/roomsView/${targetRoomId}/`);
+      console.error('Error during transition:', error);
+      setIsTransitioning(false);
     }
   }, [facilities_id, router, preloadTexture]);
 
@@ -121,6 +147,8 @@ const RoomPage = ({ params }) => {
             places={places}
             preloadedTextures={preloadedTextures}
             onHotspotClick={handleHotspotClick}
+            isTransitioning={isTransitioning}
+            transitionDirection={transitionDirection}
           />
         </motion.div>
       </AnimatePresence>

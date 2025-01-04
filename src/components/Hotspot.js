@@ -7,7 +7,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from "three";
 import styles from "./Hotspot.module.css";
 
-const Hotspot = ({ hotspot, onClick, size = 30, transitioning }) => {
+const Hotspot = ({ hotspot, onClick, size = 22, isTransitioning }) => {
   const [hovered, setHovered] = useState(false);
   const groupRef = useRef();
   const pulseRef = useRef();
@@ -29,8 +29,7 @@ const Hotspot = ({ hotspot, onClick, size = 30, transitioning }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    // Ensure the click is only processed when not transitioning
-    if (!transitioning) {
+    if (!isTransitioning) {
       onClick(hotspot);
     }
   };
@@ -44,7 +43,7 @@ const Hotspot = ({ hotspot, onClick, size = 30, transitioning }) => {
       onPointerOut={() => setHovered(false)}
     >
       <mesh ref={pulseRef} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[size * 0.8, size, 32]} />
+        <ringGeometry args={[size * 0.7, size * 0.9, 32]} />
         <meshBasicMaterial
           color="#2a4e4e"
           transparent
@@ -53,7 +52,7 @@ const Hotspot = ({ hotspot, onClick, size = 30, transitioning }) => {
         />
       </mesh>
       <mesh scale={hovered ? 1.3 : 1} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[size * 0.6, 32]} />
+        <circleGeometry args={[size * 0.5, 32]} />
         <meshBasicMaterial
           color={hovered ? '#2a4e4e' : '#ffffff'}
           transparent
@@ -62,7 +61,7 @@ const Hotspot = ({ hotspot, onClick, size = 30, transitioning }) => {
         />
       </mesh>
       <mesh scale={hovered ? 1.3 : 1} rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[size * 0.2, 32]} />
+        <circleGeometry args={[size * 0.175, 32]} />
         <meshBasicMaterial
           color={hovered ? '#2a4e4e' : '#ffffff'}
           side={THREE.DoubleSide}
