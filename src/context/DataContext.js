@@ -11,7 +11,7 @@ export const DataProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          'api/resource/facilities?fields=["*"]&expand=1' // Use the rewritten API route
+          '/api/resource/facilities?fields=["*"]&expand=1' // Use the rewritten API route
         );
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
