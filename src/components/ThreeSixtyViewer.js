@@ -14,7 +14,7 @@ import styles from "@/components/ThreeSixtyViewer.module.css";
 import { texturePreloader } from "@/utils/texturePreloader";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
-
+import { Scrollbar } from 'swiper/modules';
 const Player = dynamic(() => 
   import('@lottiefiles/react-lottie-player').then((mod) => mod.Player), 
   { ssr: false }
@@ -47,8 +47,10 @@ const InfoCard = ({ FacilitieName, roomName, logoUrl, places, router , facilitie
           className={styles.logo}
         />
         <div className={styles.roomDetails}>
-          <h3>{FacilitieName}</h3>
-          <h4>{roomName}</h4>
+          <h5 >{FacilitieName}</h5>
+          <h6>{roomName}</h6>
+         
+
         </div>
       </div>
       <button 
@@ -77,36 +79,40 @@ const InfoCard = ({ FacilitieName, roomName, logoUrl, places, router , facilitie
             strokeLinejoin="round"
           />
         </svg>
-        <span>Exit Tour</span>
+        <span>خروج</span>
       </button>
     </div>
     
     <div className={`${styles.placesContainer} ${styles.rightAligned}`}>
-      <Swiper
-        modules={[Navigation]}
-        navigation
-        slidesPerView="auto"
-        spaceBetween={10}
-        className="places-swiper"
-        centeredSlides={true}
-      >
-        {places.length > 0 ? (
-          places.map((place, index) => (
-            <SwiperSlide key={index}>
-              <button
-                className={styles.placeButton}
-                onClick={() => router.push(`/roomsView/${place.default_hotspot}/${place.facilitie}`)}
-              >
-                {place.name1}
-              </button>
-            </SwiperSlide>
-          ))
-        ) : (
-          <SwiperSlide>
-            <div>No properties available</div>
+    <Swiper
+     slidesPerView="auto"
+     spaceBetween={10}
+     centeredSlides={false} // Ensure the slides align to the start
+     scrollbar={{ draggable: true }}
+     dir="rtl" // Correct RTL direction
+     className="places-swiper"
+     simulateTouch={true} // تمكين التمرير بالسحب
+      grabCursor={true} // عرض مؤشر "الإمساك" عند السحب
+    >
+      {places.length > 0 ? (
+        places.map((place, index) => (
+          <SwiperSlide key={index}>
+            <button
+              className={styles.placeButton}
+              onClick={() =>
+                router.push(`/roomsView/${place.default_hotspot}/${place.facilitie}`)
+              }
+            >
+              {place.name1}
+            </button>
           </SwiperSlide>
-        )}
-      </Swiper>
+        ))
+      ) : (
+        <SwiperSlide>
+          <div>No properties available</div>
+        </SwiperSlide>
+      )}
+    </Swiper>
     </div>
   </>
 );
@@ -207,18 +213,17 @@ const Scene = ({ roomData, currentTexture, onHotspotClick, isTransitioning, tran
         />
       ))}
 
-      <OrbitControls
-        ref={controlsRef}
-        enableDamping
-        dampingFactor={0.1}
-        rotateSpeed={0.8}
-        maxDistance={500}
-        minDistance={0.5}
-        target={[0, 0, 0]}
-        minPolarAngle={Math.PI / 3}
-        makeDefault
-        args={[camera, gl.domElement]}
-      />
+    <OrbitControls
+      ref={controlsRef}
+      enableDamping
+      dampingFactor={0.1}
+      rotateSpeed={0.8}
+      enableZoom={false} // Disable zoom
+      target={[0, 0, 0]}
+      minPolarAngle={Math.PI / 3}
+      makeDefault
+      args={[camera, gl.domElement]}
+    />
     </>
   );
 };

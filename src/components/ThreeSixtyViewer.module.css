@@ -11,7 +11,7 @@
   top: 20px;
   right: 20px;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.349);
   border-radius: 10px;
   padding: 20px;
   min-width: 200px;
@@ -20,7 +20,6 @@
   flex-direction: column;
   gap: 20px;
   text-align: end;
-  
 }
 
 .logo {
@@ -30,36 +29,25 @@
 }
 
 .exitButton {
-  width: 100%;
+  width: auto; /* تحديد العرض التلقائي بدلاً من 100% */
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 8px 16px; /* تصغير الحشوة */
+  border-radius: 6px; /* تقليل الزوايا */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px; /* تقليل حجم الخط */
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
   margin-top: auto;
 } 
-.exitButton:hover {
-  background: hsla(180, 24%, 25%, 0.27);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
 
-.exitButton:active {
-  transform: translateY(0);
-}
 
-.exitButton svg {
-  width: 20px;
-  height: 20px;
-}
+
 .roomInfo {
   display: flex;
   flex-direction: column;
@@ -74,7 +62,7 @@
 
 
 
-.roomDetails h3 {
+.roomDetails h5 {
   color: #304f4f;
 
   margin: 0;
@@ -82,9 +70,8 @@
   font-weight: 600;
 }
 
-.roomDetails h4 {
+.roomDetails h6 {
   margin: 0;
-  font-size: 14px;
   font-weight: 400;
   color: #c1a16a;
 }
@@ -95,30 +82,32 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  width: 80%;
+  width: 100%;
   max-width: 800px;
 }
 
 .placesContainer :global(.swiper) {
-  padding: 0 40px;
+  width: 100%;
 }
 
 .placesContainer :global(.swiper-slide) {
-  width: auto !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-shrink: 0;
+  width: fit-content; /* Allow slides to fit their content */
+  text-align: center;
 }
 
 .placesContainer :global(.swiper-wrapper) {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
+
+
+
+
 .placeButton {
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
+  background: rgba(255, 255, 255, 0);
+  border:#304f4f solid 2px ;
   border-radius: 8px;
   padding: 10px 20px;
   cursor: pointer;
@@ -126,10 +115,11 @@
   white-space: nowrap;
   font-size: 14px;
   margin: 0 auto;
+  color: #ffffff;
 }
 
 .placeButton:hover {
-  background: rgba(255, 255, 255, 1);
+  background: #304f4f4d;
   transform: translateY(-2px);
 }
 
@@ -223,8 +213,28 @@
     font-size: 1rem; 
   }
 }
+
 @media (max-width: 768px) {
-  .exitButton {
-    display: none;
+  .infoCard {
+    padding: 8px; /* تقليل الحشوة */
+    min-width: 100px; /* تصغير العرض الأدنى */
+    gap: 8px; /* تقليل التباعد بين العناصر */
+    top: 10px;
+    right: 10px;
+  }
+
+  .logo {
+    width: 140px; /* تقليل حجم الشعار */
+    align-self: flex-end; /* نقل الشعار إلى الزاوية اليمنى */
+  }
+
+}
+
+/* تصغير أزرار Swiper في الهواتف المحمولة */
+@media (max-width: 768px) {
+  .placeButton {
+    padding: 5px 10px; /* تصغير الحشوة الداخلية للأزرار */
+    font-size: 12px; /* تقليل حجم النص */
+    border-radius: 6px; /* تقليل الزوايا */
   }
 }

@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "leaflet/dist/leaflet.css";
+import 'swiper/css/scrollbar';
 
 import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import "@/assets/scss/style.scss";

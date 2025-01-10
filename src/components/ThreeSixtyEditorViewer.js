@@ -46,6 +46,7 @@ const Scene = ({ roomData, currentTexture, onUpdateHotspot }) => {
         minDistance={0.5}
         target={[0, 0, 0]}
         makeDefault
+        
       />
     </>
   );
