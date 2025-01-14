@@ -1,0 +1,36 @@
+.propertyCard {
+    background: linear-gradient(135deg, 
+        #F4EFEB 0%, 
+        rgba(244, 239, 235, 0.95) 60%,
+        rgba(37, 60, 60, 0.05) 100%);
+    border: 1px solid rgba(37, 60, 60, 0.1);
+    transition: all 0.3s ease;
+}
+
+.propertyTitle {
+    color: #253C3C;
+    background: linear-gradient(to right, #253C3C, #2d4848);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.propertyLocation {
+    color: #C1A16A;
+    background: linear-gradient(to right, #C1A16A, #d4b98f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.textMuted {
+    color: rgba(37, 60, 60, 0.7) !important; /* Using our secondary color with opacity */
+}
+
+.propertyCard:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg,
+        #F4EFEB 0%,
+        rgba(244, 239, 235, 0.8) 50%,
+        rgba(193, 161, 106, 0.1) 100%);
+    box-shadow: 0 10px 20px rgba(37, 60, 60, 0.15);
+}
+

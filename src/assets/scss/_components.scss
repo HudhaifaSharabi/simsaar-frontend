@@ -537,7 +537,7 @@ $value in $colors {
     margin-bottom: 15px;
     background: darken($light, 1%);
     .nav-link {
-        color: $gray-700 !important;
+        color: $gray-200 !important;
         padding: 5px;
         transition: all 0.5s ease;
         &.nav-link-alt {
@@ -547,7 +547,7 @@ $value in $colors {
             }
         }
         &.active {
-            background: $primary !important;
+            background: $secondary !important;
             color: $white !important;
             .tab-para {
                 color: rgba($white, 0.65) !important;
@@ -560,20 +560,12 @@ $value in $colors {
 /*         Form            */
 /*===============================*/
 .form-control {
-    border: 1px solid $gray-200;
-    font-size: 16px;
-    line-height: 26px;
-    background-color: $white;
-    border-radius: 8px;
+    border: 1px solid #253C3C;
+    color: #253C3C;
+    background-color: #F4EFEB;
     &:focus {
-        border-color: $primary;
-        box-shadow: none;
-    }
-    &[readonly] {
-        background-color: $white;
-    }
-    &:disabled {
-        background-color: $gray-200;
+        border-color: #C1A16A;
+        box-shadow: 0 0 0 0.2rem rgba(193, 161, 106, 0.25);
     }
 }
 
@@ -920,4 +912,20 @@ $value in $colors {
 
 .uim-svg {
     vertical-align: 0 !important;
+}
+
+.card {
+    background-color: #F4EFEB;
+    .card-title {
+        color: #253C3C !important;
+    }
+    .card-text {
+        color: #253C3C;
+    }
+    &:hover {
+        box-shadow: 0 0 15px rgba(37, 60, 60, 0.1);
+        .card-title {
+            color: #C1A16A !important;
+        }
+    }
 }

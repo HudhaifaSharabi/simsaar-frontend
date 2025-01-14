@@ -79,8 +79,8 @@ export default function Home() {
   return (
     <>
     
-      <Navbar menuClass="navigation-menu nav-right" />
-      <section className="position-relative mt-5 pt-4">
+    <Navbar navClass="defaultscroll sticky" menuClass="navigation-menu" />
+    <section className="position-relative mt-5 pt-4">
         <div className="container-fluid px-md-4 px-2 mt-2">
           <div
             className="bg-home-one d-table w-100 shadow rounded-3 overflow-hidden"
@@ -89,7 +89,7 @@ export default function Home() {
             <div
               className="bg-overlay image-wrap "
               id="hero-images"
-              style={{ backgroundImage: "url('/images/bg/01.webp')" }}
+              style={{ backgroundImage: "url('/images/bg/08.jpg')" }}
             ></div>
             <div className="bg-overlay bg-black opacity-50"></div>
 
@@ -98,8 +98,8 @@ export default function Home() {
                 <div className="col-12">
                   <div className="title-heading">
                     <TextAnimation />
-                    <p className="para-desc text-white title-dark mb-0">
-                      مرحبًا بكم في جولة الغرف التفاعلية
+                    <p className="para-desc welcome-text mb-0">
+                    مرحبًا بكم في جولة الغرف التفاعلية
                     </p>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ export default function Home() {
         <div className="container rtl-direction">
           <SelectThree />
         </div>
-        <div className="container">
+        {/* <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6">
               <div className="about-left">
@@ -188,7 +188,7 @@ export default function Home() {
             </div>
           </div>
           <PropertyType />
-        </div>
+        </div> */}
         <div className="container mt-100 mt-60">
           <div className="row justify-content-center">
             <div className="col">
@@ -201,9 +201,9 @@ export default function Home() {
           <Featuredproperties />
         </div>
 
-        <div className="container mt-100 mt-60">
+        {/* <div className="container mt-100 mt-60">
           <AboutUs />
-        </div>
+        </div> */}
       </section>
       <Footer />
       <ScrollTop />

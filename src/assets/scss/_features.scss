@@ -7,16 +7,14 @@
 /*===============================*/
 .features {
     .title {
+        color: $primary;
         &:hover {
-            color: $primary !important;
+            color: $secondary !important;
         }
     }
     .feature-icon {
         .hexagon {
-            color: transparent !important;
-            fill: rgba($primary, 0.05) !important;
-            height: 102px;
-            width: 102px;
+            fill: rgba($primary, 0.1) !important;
         }
     }
 }
@@ -25,6 +23,7 @@
 /*         Property Listing      */
 /*===============================*/
 .property {
+    background-color: $white;
     transition: all 0.5s ease;
     .property-image {
         img,
@@ -50,6 +49,9 @@
         .property-icon {
             opacity: 1;
         }
+        .title {
+            color: $secondary !important;
+        }
     }
     .title {
         &:hover {
@@ -73,6 +75,14 @@
                     }
                 }
             }
+        }
+    }
+    .property-icon {
+        background-color: $white;
+        color: $primary;
+        &:hover {
+            background-color: $secondary;
+            color: $white;
         }
     }
 }

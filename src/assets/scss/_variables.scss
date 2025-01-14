@@ -4,34 +4,39 @@
 
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap");
 
-// Color
-$white: #ffffff;
+// Primary (60%)
+$white: #F4EFEB;
+$light: #F4EFEB;
+$background: #F4EFEB;
 
-$primary: #304f4f;
-$secondary: #c1a16a;
+// Secondary (30%)
+$primary: #253C3C;
+$dark: #253C3C;
+
+// Accent (10%)
+$secondary: #C1A16A;
+
 $success: #16a34a;
 $warning: #fbbf24;
 $info: #22d3ee;
 $danger: #dc2626;
-$dark: #1e293b;
-$black: #161c2d;
-$muted: #94a3b8;
-$light: #f8f9fc;
+$black: #d6c9beb9; 
+$muted: rgba(37, 60, 60, 0.7);
 
 // Gray
-$gray-100: #f8f9fa;
-$gray-200: #f1f5f9;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #6c757d;
-$gray-700: #495057;
+$gray-100: mix(#F4EFEB, #253C3C, 90%);
+$gray-200: mix(#F4EFEB, #253C3C, 80%);
+$gray-300: mix(#F4EFEB, #253C3C, 70%);
+$gray-400: mix(#F4EFEB, #253C3C, 60%);
+$gray-500: mix(#F4EFEB, #253C3C, 50%);
+$gray-600: mix(#F4EFEB, #253C3C, 40%);
+$gray-700: mix(#F4EFEB, #253C3C, 30%);
 
 //Body Background
 $shadow: 0 0 3px rgba($dark, 0.15);
 $shadow-md: 0 5px 13px rgba($dark, 0.2);
 $shadow-lg: 0 10px 25px rgba($dark, 0.15);
-$footer: lighten($black, 6%);
+$footer: #253C3C;
 
 // Base font
 $font-size-base: 17px;

@@ -48,7 +48,7 @@ export const propertyData = [
 
 export const clientData = [
     {
-        image: '/images/client/01.jpg',
+        image: '/images/client/08.jpg',
         name: 'Young Bonetti',
         title: 'Product Manager',
         desc: '" It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. "'
@@ -78,7 +78,7 @@ export const clientData = [
         desc: '" It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. "'
     },
     {
-        image: '/images/client/06.jpg',
+        image: '/images/client/08.jpg',
         name: 'Michael Wilkes',
         title: 'Product Manager',
         desc: '" It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. "'
@@ -97,12 +97,12 @@ export const brokerData = [
         title: 'سمسار'
     },
     {
-        image: '/images/client/06.jpg',
+        image: '/images/client/08.jpg',
         name: 'المحمدي ',
         title: 'سمسار'
     },
     {
-        image: '/images/client/07.jpg',
+        image: '/images/client/08.jpg',
         name: 'المحمدي',
         title: 'شركه عقارات'
     },

@@ -43,3 +43,62 @@
 @import "team";
 @import "contact";
 @import "footer";
+// Add this new file for color utilities
+.text-primary {
+   color: #253C3C !important;
+}
+
+.text-secondary {
+   color: #C1A16A !important;
+}
+
+.bg-primary {
+   background-color: #253C3C !important;
+}
+
+.bg-secondary {
+   background-color: #C1A16A !important;
+}
+
+.border-primary {
+   border-color: #253C3C !important;
+}
+
+.border-secondary {
+   border-color: #C1A16A !important;
+}
+
+// Hover states
+.hover-primary:hover {
+   color: #253C3C !important;
+}
+
+.hover-secondary:hover {
+   color: #C1A16A !important;
+}
+
+.type-animation {
+   h1 {
+       color: #253C3C !important;  // Secondary color (30%)
+       
+       &::selection {
+           background: #C1A16A;  // Accent color (10%)
+           color: #F4EFEB;      // Primary color (60%)
+       }
+   }
+}
+
+// Optional: Add a hover effect
+.type-animation:hover {
+   h1 {
+       color: #C1A16A !important;  // Change to accent color on hover
+       transition: color 0.3s ease;
+   }
+}
+
+
+.property-item:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 10px 20px rgba(37, 60, 60, 0.15) !important;
+   border-color: #C1A16A !important;  /* Accent color on hover */
+}

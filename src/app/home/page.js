@@ -43,7 +43,7 @@ export default function Home() {
             <div
               className="bg-overlay image-wrap"
               id="hero-images"
-              style={{ backgroundImage: "url('/images/bg/01.webp')" }}
+              style={{ backgroundImage: "url('/images/bg/08.jpg')" }}
             ></div>
             <div className="bg-overlay bg-black opacity-50"></div>
 
