@@ -190,7 +190,7 @@ export default function PropertyDetails({ params }) {
 
                 <div className="d-flex mt-3">
                   
-                  <Link href={`/roomsView/${itemDetails.default_hotspot}/${itemDetails.name}`} className="btn btn-primary w-100">
+                  <Link href={`/realView/${itemDetails.default_hotspot}/${itemDetails.name}`} className="btn btn-primary w-100">
                     عرض واقعي
                   </Link>
                 </div>

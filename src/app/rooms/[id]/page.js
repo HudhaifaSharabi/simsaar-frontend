@@ -298,7 +298,7 @@ export default function Rooms({ params }) {
                           حجز  الغرفه
                         </Button>
                         <Link
-                          href={`/roomsView/${item.default_hotspot}/${id}/`} // Adjust the link as needed
+                          href={`/realView/${item.default_hotspot}/${id}/`} // Adjust the link as needed
 
                           
                         >

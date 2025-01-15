@@ -1,0 +1,106 @@
+.roomContainer {
+  position: relative; /* Make the container relative for absolute positioning */
+  height: 100vh; /* Adjust to your needs */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Ensure the viewer takes the full height */
+}
+
+.viewer {
+  flex: 1; /* Allow the viewer to take up remaining space */
+  /* Other styles for the viewer */
+}
+
+.sidebar {
+  position: absolute; /* Position absolutely at the bottom center */
+  bottom: 20px; /* Distance from the bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust to center */
+  z-index: 10; /* Ensure it's above the viewer */
+  /* Add any additional styles for the sidebar */
+}
+
+.roomInfo {
+  color: white;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.roomInfo h2 {
+  margin: 0 0 15px 0;
+  font-size: 1.5rem;
+}
+
+.floorButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.floorButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.floorButton:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+.topLeftSidebar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px; /* Add some padding */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.logo {
+  width: 150px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.roomInfo {
+  color: white;
+  background: rgba(50, 101, 94, 0.75);
+  padding: 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.roomInfo h2 {
+  margin: 0 0 15px 0;
+  font-size: 1.5rem;
+}
+
+.floorButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.floorButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.floorButton:hover {
+  background: rgba(255, 255, 255, 0.25);
+}

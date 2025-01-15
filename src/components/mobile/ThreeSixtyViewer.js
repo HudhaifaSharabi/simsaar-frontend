@@ -36,85 +36,7 @@ const LoadingScreen = () => {
   );
 };
 
-// Info Card
-const InfoCard = ({ FacilitieName, roomName, logoUrl, places, router , facilitie }) => (
-  <>
-    <div className={`${styles.infoCard} ${styles.rightAligned}`}>
-      <div className={styles.roomInfo}>
-        <img 
-          src={logoUrl} 
-          alt="Logo" 
-          className={styles.logo}
-        />
-        <div className={styles.roomDetails}>
-          <h5 >{FacilitieName}</h5>
-          <h6>{roomName}</h6>
-         
 
-        </div>
-      </div>
-      <button 
-        className={styles.exitButton}
-        onClick={() => router.push(`/property-detail//${facilitie}`)}
-        title="Exit Tour"
-      >
-        <svg 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path 
-            d="M20 12H13M3 12H4M13 12V6M13 12V18" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round"
-          />
-          <path 
-            d="M8 8L4 12L8 16" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          />
-        </svg>
-        <span>خروج</span>
-      </button>
-    </div>
-    
-    <div className={`${styles.placesContainer} ${styles.rightAligned}`}>
-    <Swiper
-     slidesPerView="auto"
-     spaceBetween={10}
-     centeredSlides={false} // Ensure the slides align to the start
-     dir="rtl" // Correct RTL direction
-     className="places-swiper"
-     simulateTouch={true} // تمكين التمرير بالسحب
-      grabCursor={true} // عرض مؤشر "الإمساك" عند السحب
-    >
-      {places.length > 0 ? (
-        places.map((place, index) => (
-          <SwiperSlide key={index}>
-            <button
-              className={styles.placeButton}
-              onClick={() =>
-                router.push(`/realView/${place.default_hotspot}/${place.facilitie}`)
-              }
-            >
-              {place.name1}
-            </button>
-          </SwiperSlide>
-        ))
-      ) : (
-        <SwiperSlide>
-          <div>No properties available</div>
-        </SwiperSlide>
-      )}
-    </Swiper>
-    </div>
-  </>
-);
 
 // Scene Component
 const Scene = ({ roomData, currentTexture, onHotspotClick, isTransitioning, transitionDirection }) => {
@@ -252,14 +174,7 @@ const ThreeSixtyViewer = ({
 
   return (
     <div className={styles.viewerContainer}>
-      <InfoCard
-        FacilitieName={roomData.facilitie_name}
-        facilitie={roomData.facilitie}
-        roomName={roomData.place_name}
-        logoUrl="/images/logo.png"
-        places={places}
-        router={router}
-      />
+      
       <Canvas
         camera={{
           position: [0, 0, 0.1],

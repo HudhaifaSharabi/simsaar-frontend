@@ -20,7 +20,7 @@ footer {
         font-weight: 600;
     }
     .mb-2 {
-        color: #ffffff;  // Light color for better visibility
+        color: #f4efeb;  // Light color for better visibility
                 transition: all 0.3s ease;
                 &:hover {
                     color: #C1A16A;  // Accent color for hover
@@ -29,7 +29,7 @@ footer {
                 }
     }
     .text-foot{
-        color: #ffffff;
+        color: #f4efeb;
     }
     .mt-4 ,.mb-0 {
         color: #C1A16A;
@@ -44,7 +44,7 @@ footer {
         li {
             margin-top: 10px;
             a {
-                color: #ffffff;  // Light color for better visibility
+                color: #f4efeb;  // Light color for better visibility
                 transition: all 0.3s ease;
                 &:hover {
                     color: #C1A16A;  // Accent color for hover
@@ -64,7 +64,7 @@ footer {
         border-color: lighten($footer, 3%) !important;
     }
     .footer-text {
-        color: #ffffff;
+        color: #f4efeb;
         transition: all 0.3s ease;
                 &:hover {
                     color: #C1A16A;  // Accent color for hover
@@ -77,12 +77,12 @@ footer {
     }
     .footer-social-icon {
         a {
-            background: #ffffff;  // Light background
+            background: #f4efeb;  // Light background
             color: #253C3C;      // Dark text
             transition: all 0.3s ease;
             &:hover {
                 background: #C1A16A;  // Accent color for hover
-                color: #ffffff;      // Light text on hover
+                color: #f4efeb;      // Light text on hover
                 transform: translateY(-3px);
             }
         }

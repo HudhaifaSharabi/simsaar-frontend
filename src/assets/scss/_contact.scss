@@ -108,12 +108,12 @@
 }
 
 .choices__inner {
-    background: #ffffff !important;
+    background: #f4efeb !important;
 }
 
 .choices__list--dropdown,
 .choices[data-type*=select-one] .choices__input {
-    background: #ffffff;
+    background: #f4efeb;
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
@@ -129,12 +129,12 @@
 .css-13cymwt-control{
     border-color: transparent !important;
     border-style: none !important;
-    background-color: #ffffff !important;
+    background-color: #f4efeb !important;
   }
   
   .css-t3ipsp-control {
     border-color: transparent !important;
-    background-color: #ffffff !important;
+    background-color: #f4efeb !important;
   }
   
   .css-1u9des2-indicatorSeparator{
@@ -168,7 +168,7 @@
     z-index: 999;
     border-radius: 5px;
     border-style: none !important;
-    background-color: #ffffff !important;
+    background-color: #f4efeb !important;
     box-shadow: $shadow;
     color: $dark !important;
   }

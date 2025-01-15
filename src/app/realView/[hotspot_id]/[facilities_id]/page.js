@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
-import ThreeSixtyViewer from "@/components/mobile/ThreeSixtyViewer";
+import ThreeSixtyViewer from "@/components/ThreeSixtyViewer";
 import { AnimatePresence, motion } from "framer-motion";
 import * as THREE from "three";
 import styles from "./styles.module.css";
@@ -119,7 +119,7 @@ const RoomPage = ({ params }) => {
       await preloadTexture(result.data.image360);
       
       // Complete the transition and navigate
-      router.push(`/roomsView/${targetRoomId}/${facilities_id}`);
+      router.push(`/realView/${targetRoomId}/${facilities_id}`);
 
     } catch (error) {
       console.error('Error during transition:', error);
@@ -127,7 +127,7 @@ const RoomPage = ({ params }) => {
     }
   }, [facilities_id, router, preloadTexture]);
 
-  if (loading) return <div ></div>;
+  if (loading) return <div className={styles.loading}>Loading...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
   if (!currentRoom) return null;
 
@@ -135,7 +135,7 @@ const RoomPage = ({ params }) => {
     <div className={styles.roomContainer}>
       <AnimatePresence mode="wait">
         <motion.div
-          key={currentRoom.name}
+          key={currentRoom._id}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

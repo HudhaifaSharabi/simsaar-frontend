@@ -86,7 +86,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #ffffff;
+  background: #f4efeb;
 }
 
 a {
@@ -100,6 +100,6 @@ a {
   }
 }
 :root {
-  color: #ffffff;
+  color: #f4efeb;
   background-color: #dc3545;
 }
