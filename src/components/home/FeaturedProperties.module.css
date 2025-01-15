@@ -1,6 +1,6 @@
 .propertyCard {
     background: linear-gradient(135deg, 
-        #faf4f0 0%, 
+        #fffbf7 0%, 
         rgba(244, 239, 235, 0.95) 60%,
         rgba(37, 60, 60, 0.05) 100%);
     border: 1px solid rgba(37, 60, 60, 0.1);
@@ -28,7 +28,7 @@
 .propertyCard:hover {
     transform: translateY(-5px);
     background: linear-gradient(135deg,
-        #faf4f0 0%,
+        #fffbf7 0%,
         rgba(244, 239, 235, 0.8) 50%,
         rgba(193, 161, 106, 0.1) 100%);
     box-shadow: 0 10px 20px rgba(37, 60, 60, 0.15);

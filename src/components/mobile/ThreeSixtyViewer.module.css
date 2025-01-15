@@ -58,7 +58,7 @@
 .roomDetails {
   display: flex;
   flex-direction: column;
-  background-color: #faf4f0;
+  background-color: #fffbf7;
 }
 
 
@@ -116,13 +116,13 @@
   white-space: nowrap;
   font-size: 14px;
   margin: 0 auto;
-  color: #faf4f0;
+  color: #fffbf7;
 }
 
 .placeButton:hover {
   background: #C1A16A;
   border-color: #C1A16A;
-  color: #faf4f0;
+  color: #fffbf7;
   transform: translateY(-2px);
 }
 .loadingScreen {
@@ -131,7 +131,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #faf4f0;
+  background: #fffbf7;
   display: flex;
   justify-content: center;
   align-items: center;
