@@ -114,13 +114,13 @@
   white-space: nowrap;
   font-size: 14px;
   margin: 0 auto;
-  color: #fffbf7;
+  color: #fffdfa;
 }
 
 .placeButton:hover {
   background: #C1A16A;
   border-color: #C1A16A;
-  color: #fffbf7;
+  color: #fffdfa;
   transform: translateY(-2px);
 }
 .loadingScreen {
@@ -129,7 +129,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #fffbf7;
+  background: #fffdfa;
   display: flex;
   justify-content: center;
   align-items: center;

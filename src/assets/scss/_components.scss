@@ -562,7 +562,7 @@ $value in $colors {
 .form-control {
     border: 1px solid #253C3C;
     color: #253C3C;
-    background-color: #fffbf7;
+    background-color: #fffdfa;
     &:focus {
         border-color: #C1A16A;
         box-shadow: 0 0 0 0.2rem rgba(193, 161, 106, 0.25);
@@ -915,7 +915,7 @@ $value in $colors {
 }
 
 .card {
-    background-color: #fffbf7;
+    background-color: #fffdfa;
     .card-title {
         color: #253C3C !important;
     }
