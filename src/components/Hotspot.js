@@ -54,7 +54,7 @@ const Hotspot = ({ hotspot, onClick, size = 22, isTransitioning }) => {
       <mesh scale={hovered ? 1.3 : 1} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[size * 0.5, 32]} />
         <meshBasicMaterial
-          color={hovered ? '#2a4e4e' : '#f5f2f0'}
+          color={hovered ? '#2a4e4e' : '#faf4f0'}
           transparent
           opacity={0.9}
           side={THREE.DoubleSide}
@@ -63,7 +63,7 @@ const Hotspot = ({ hotspot, onClick, size = 22, isTransitioning }) => {
       <mesh scale={hovered ? 1.3 : 1} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[size * 0.175, 32]} />
         <meshBasicMaterial
-          color={hovered ? '#2a4e4e' : '#f5f2f0'}
+          color={hovered ? '#2a4e4e' : '#faf4f0'}
           side={THREE.DoubleSide}
         />
       </mesh>
