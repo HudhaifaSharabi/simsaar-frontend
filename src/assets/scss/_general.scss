@@ -11,10 +11,10 @@ body {
     overflow-x: hidden !important;
     font-size: $font-size-base;
     color: #253C3C !important;
-    background-color: #f4efeb;
+    background-color: #f5f2f0;
 }
 section{
-    background-color: #f4efeb;
+    background-color: #f5f2f0;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: $font-family-base;
@@ -51,7 +51,7 @@ ul li{
 .btn-primary {
     background-color: #253C3C !important;
     border-color: #253C3C !important;
-    color: #f4efeb !important;
+    color: #f5f2f0 !important;
     &:hover {
         background-color: #C1A16A !important;
         border-color: #C1A16A !important;

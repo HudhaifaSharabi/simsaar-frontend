@@ -106,7 +106,7 @@ const EditableHotspot = ({ hotspot, onPositionUpdate, size = 30 }) => {
       <mesh scale={hovered ? 1.3 : 1} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[size * 0.6, 32]} />
         <meshBasicMaterial
-          color={isDragging ? "#ff0000" : (hovered ? '#2a4e4e' : '#f4efeb')}
+          color={isDragging ? "#ff0000" : (hovered ? '#2a4e4e' : '#f5f2f0')}
           transparent
           opacity={0.9}
           side={THREE.DoubleSide}
@@ -115,7 +115,7 @@ const EditableHotspot = ({ hotspot, onPositionUpdate, size = 30 }) => {
       <mesh scale={hovered ? 1.3 : 1} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[size * 0.2, 32]} />
         <meshBasicMaterial
-          color={isDragging ? "#ff0000" : (hovered ? '#2a4e4e' : '#f4efeb')}
+          color={isDragging ? "#ff0000" : (hovered ? '#2a4e4e' : '#f5f2f0')}
           side={THREE.DoubleSide}
         />
       </mesh>
