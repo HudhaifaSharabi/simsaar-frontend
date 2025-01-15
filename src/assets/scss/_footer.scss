@@ -16,8 +16,23 @@ footer {
     }
     .footer-head {
         letter-spacing: 1px;         
-        font-weight: 500;
-        color: $light;
+        color: #C1A16A;  // Using accent color for headings to stand out
+        font-weight: 600;
+    }
+    .mb-2 {
+        color: #F4EFEB;  // Light color for better visibility
+                transition: all 0.3s ease;
+                &:hover {
+                    color: #C1A16A;  // Accent color for hover
+                    transform: translateX(5px);
+                    display: inline-block;
+                }
+    }
+    .text-foot{
+        color: #F4EFEB;
+    }
+    .mt-4 ,.mb-0 {
+        color: #C1A16A;
     }
     
     .text-foot {
@@ -27,20 +42,19 @@ footer {
     .footer-list {
         margin-bottom: 0;
         li {
-            position: relative;
-            margin-left: 0;
-            margin-bottom: 10px;
+            margin-top: 10px;
             a {
-                transition: all 0.5s ease;
+                color: #F4EFEB;  // Light color for better visibility
+                transition: all 0.3s ease;
                 &:hover {
-                    color: lighten($gray-500, 20%);
+                    color: #C1A16A;  // Accent color for hover
+                    transform: translateX(5px);
+                    display: inline-block;
                 }
-            }   
-            &:last-child{
-                margin-bottom: 0;
-            }         
+            }
         }
     }
+    
 
     .footer-border,
     .footer-bar {
@@ -48,5 +62,29 @@ footer {
     }
     .border {
         border-color: lighten($footer, 3%) !important;
+    }
+    .footer-text {
+        color: #F4EFEB;
+        transition: all 0.3s ease;
+                &:hover {
+                    color: #C1A16A;  // Accent color for hover
+                    transform: translateX(5px);
+                    display: inline-block;
+                }  // Light color for better visibility
+    }
+    hr {
+        border-top-color: rgba(244, 239, 235, 0.2);  // More visible line
+    }
+    .footer-social-icon {
+        a {
+            background: #F4EFEB;  // Light background
+            color: #253C3C;      // Dark text
+            transition: all 0.3s ease;
+            &:hover {
+                background: #C1A16A;  // Accent color for hover
+                color: #F4EFEB;      // Light text on hover
+                transform: translateY(-3px);
+            }
+        }
     }
 }
