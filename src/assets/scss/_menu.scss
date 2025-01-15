@@ -11,7 +11,7 @@
     left: 0;
     top: 0;
     z-index: 999;
-    background-color: #F4EFEB;
+    background-color: #ffffff;
     border: 0;
     transition: all .5s ease;
     .logo {
@@ -303,7 +303,7 @@
     }
     
     &.scroll {
-        background-color: #F4EFEB;
+        background-color: #ffffff;
         border: none;
         box-shadow: $shadow;
         .navigation-menu {
@@ -346,7 +346,7 @@
     }
 
     &.nav-sticky{
-        background: #F4EFEB;
+        background: #ffffff;
         box-shadow: $shadow;
         .navigation-menu {
             &.nav-light {
@@ -628,7 +628,7 @@
   
 @media (max-width: 991px) {
     #topnav {
-        background-color: #F4EFEB;
+        background-color: #ffffff;
         box-shadow: $shadow;
         min-height: 74px;
         .logo {
@@ -760,9 +760,9 @@
         height: auto;
         padding-bottom: 0;
         overflow: auto;
-        border-top: 1px solid darken(#F4EFEB, 2%);
-        border-bottom: 1px solid darken(#F4EFEB, 2%);
-        background-color: #F4EFEB;
+        border-top: 1px solid darken(#ffffff, 2%);
+        border-bottom: 1px solid darken(#ffffff, 2%);
+        background-color: #ffffff;
         &.open {
             display: block;
             overflow-y: auto;
@@ -984,7 +984,7 @@
     .buy-button {
         .btn {
             background-color: #253C3C;
-            color: #F4EFEB;
+            color: #ffffff;
             &:hover {
                 background-color: #C1A16A;
             }

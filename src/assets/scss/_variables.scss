@@ -5,9 +5,9 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap");
 
 // Primary (60%)
-$white: #F4EFEB;
-$light: #F4EFEB;
-$background: #F4EFEB;
+$white: #ffffff;
+$light: #ffffff;
+$background: #ffffff;
 
 // Secondary (30%)
 $primary: #253C3C;
@@ -24,13 +24,13 @@ $black: #d6c9beb9;
 $muted: rgba(37, 60, 60, 0.7);
 
 // Gray
-$gray-100: mix(#F4EFEB, #253C3C, 90%);
-$gray-200: mix(#F4EFEB, #253C3C, 80%);
-$gray-300: mix(#F4EFEB, #253C3C, 70%);
-$gray-400: mix(#F4EFEB, #253C3C, 60%);
-$gray-500: mix(#F4EFEB, #253C3C, 50%);
-$gray-600: mix(#F4EFEB, #253C3C, 40%);
-$gray-700: mix(#F4EFEB, #253C3C, 30%);
+$gray-100: mix(#ffffff, #253C3C, 90%);
+$gray-200: mix(#ffffff, #253C3C, 80%);
+$gray-300: mix(#ffffff, #253C3C, 70%);
+$gray-400: mix(#ffffff, #253C3C, 60%);
+$gray-500: mix(#ffffff, #253C3C, 50%);
+$gray-600: mix(#ffffff, #253C3C, 40%);
+$gray-700: mix(#ffffff, #253C3C, 30%);
 
 //Body Background
 $shadow: 0 0 3px rgba($dark, 0.15);
