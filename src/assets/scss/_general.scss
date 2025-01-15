@@ -5,16 +5,22 @@
 /*********************************/
 /*         General                */
 /*===============================*/
+
 body {
     font-family: $font-family-secondary;
     overflow-x: hidden !important;
     font-size: $font-size-base;
-    color: $dark !important;
+    color: #253C3C !important;
+    background-color: #F4EFEB;
+}
+section{
+    background-color: #F4EFEB;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: $font-family-base;
     line-height: 1.5;
     font-weight: 500 !important;
+    color: #253C3C;
 }
 .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
     line-height: 1.2;
@@ -25,9 +31,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 a {
     text-decoration: none !important;
+    color: #253C3C;
+    &:hover {
+        color: #C1A16A;
+    }
 }
 p {
     line-height: 1.6;
+    color: #253C3C;
 }
 ul li{
     -webkit-margin-start: 0.25rem;
@@ -37,3 +48,20 @@ ul li{
     -webkit-margin-start: 0px;
             margin-inline-start: 0px;
   }
+.btn-primary {
+    background-color: #253C3C !important;
+    border-color: #253C3C !important;
+    color: #F4EFEB !important;
+    &:hover {
+        background-color: #C1A16A !important;
+        border-color: #C1A16A !important;
+    }
+}
+.welcome-text {
+    color: #253C3C;
+    font-weight: 600;
+    &:hover {
+        color: #C1A16A;
+        transition: color 0.3s ease;
+    }
+}

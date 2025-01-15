@@ -108,16 +108,12 @@
 }
 
 .choices__inner {
-    background: $light !important;
+    background: #F4EFEB !important;
 }
 
 .choices__list--dropdown,
 .choices[data-type*=select-one] .choices__input {
-    background: $white;
-    border: none;
-    border-radius: 5px;
-    box-shadow: $shadow;
-    z-index: 11111;
+    background: #F4EFEB;
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
@@ -133,12 +129,12 @@
 .css-13cymwt-control{
     border-color: transparent !important;
     border-style: none !important;
-    background-color: $light !important;
+    background-color: #F4EFEB !important;
   }
   
   .css-t3ipsp-control {
     border-color: transparent !important;
-    background-color: $light !important;
+    background-color: #F4EFEB !important;
   }
   
   .css-1u9des2-indicatorSeparator{
@@ -172,7 +168,7 @@
     z-index: 999;
     border-radius: 5px;
     border-style: none !important;
-    background-color: $white !important;
+    background-color: #F4EFEB !important;
     box-shadow: $shadow;
     color: $dark !important;
   }

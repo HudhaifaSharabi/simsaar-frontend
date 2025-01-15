@@ -42,7 +42,7 @@ export default function AuthLogin() {
     };
     return (
         <section className="bg-home zoom-image d-flex align-items-center ">
-            <div className="bg-overlay image-wrap" style={{ backgroundImage: "url('/images/bg/01.webp')", backgroundPosition: 'center' }}></div>
+            <div className="bg-overlay image-wrap" style={{ backgroundImage: "url('/images/bg/08.jpg')", backgroundPosition: 'center' }}></div>
             <div className="bg-overlay bg-gradient-overlay"></div>
             <div className="container">
                 <div className="row">

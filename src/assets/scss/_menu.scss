@@ -11,7 +11,7 @@
     left: 0;
     top: 0;
     z-index: 999;
-    background-color: transparent;
+    background-color: #F4EFEB;
     border: 0;
     transition: all .5s ease;
     .logo {
@@ -303,7 +303,7 @@
     }
     
     &.scroll {
-        background-color: $white;
+        background-color: #F4EFEB;
         border: none;
         box-shadow: $shadow;
         .navigation-menu {
@@ -346,7 +346,7 @@
     }
 
     &.nav-sticky{
-        background: $white;
+        background: #F4EFEB;
         box-shadow: $shadow;
         .navigation-menu {
             &.nav-light {
@@ -628,7 +628,7 @@
   
 @media (max-width: 991px) {
     #topnav {
-        background-color: $white;
+        background-color: #F4EFEB;
         box-shadow: $shadow;
         min-height: 74px;
         .logo {
@@ -760,9 +760,9 @@
         height: auto;
         padding-bottom: 0;
         overflow: auto;
-        border-top: 1px solid darken($light,2%);
-        border-bottom: 1px solid darken($light,2%);
-        background-color: $white;
+        border-top: 1px solid darken(#F4EFEB, 2%);
+        border-bottom: 1px solid darken(#F4EFEB, 2%);
+        background-color: #F4EFEB;
         &.open {
             display: block;
             overflow-y: auto;
@@ -955,6 +955,39 @@
             font-size: 20px;
             line-height: 20px;
             pointer-events: none;
+        }
+    }
+}
+
+#topnav {
+    .navigation-menu {
+        > li {
+            > a {
+                color: #253C3C !important;
+                font-weight: 600;
+                &:hover {
+                    color: #C1A16A !important;
+                }
+            }
+            &.active > a {
+                color: #C1A16A !important;
+            }
+        }
+    }
+    
+    .navbar-toggle {
+        span {
+            background-color: #253C3C;
+        }
+    }
+    
+    .buy-button {
+        .btn {
+            background-color: #253C3C;
+            color: #F4EFEB;
+            &:hover {
+                background-color: #C1A16A;
+            }
         }
     }
 }

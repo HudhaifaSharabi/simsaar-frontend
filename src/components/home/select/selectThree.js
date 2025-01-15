@@ -30,7 +30,7 @@ export default function SelectThree(){
     <div className="row justify-content-center">
         <div className="col-12 mt-sm-0 pt-sm-0">
             <div className="features-absolute">
-                <ul className="nav nav-pills bg-white shadow border-bottom p-3 flex-row d-md-inline-flex nav-justified mb-0 rounded-top-3  position-relative overflow-hidden" id="pills-tab" role="tablist">
+                <ul className="nav nav-pills bg-primary shadow border-bottom p-3 flex-row d-md-inline-flex nav-justified mb-0 rounded-top-3  position-relative overflow-hidden" id="pills-tab" role="tablist">
                     <li className="nav-item m-1">
                         <Link className={`${activeIndex === 0 ? 'active' : '' } nav-link py-2 px-4  rounded-3 fw-medium`} href="#" scroll={false} onClick={()=>setActiveIndex(0)} >
                             حجز

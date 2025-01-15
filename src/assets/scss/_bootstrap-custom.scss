@@ -148,21 +148,20 @@ video {
 }
 
 .border {
-  border: 1px solid $gray-200 !important;
+  border: 1px solid #F4EFEB !important;
 }
 .border-top {
-  border-top: 1px solid $gray-200 !important;
+  border-top: 1px solid #F4EFEB !important;
 }
 .border-bottom {
-  border-bottom: 1px solid $gray-200 !important;
+  border-bottom: 1px solid #F4EFEB !important;
 }
 .border-left {
-  border-left: 1px solid $gray-200 !important;
+  border-left: 1px solid #F4EFEB !important;
 }
 .border-right {
-  border-right: 1px solid $gray-200 !important;
+  border-right: 1px solid #F4EFEB !important;
 }
-
 .w-md-48 {
   @media (min-width: 768px) {
     width: 12rem !important;

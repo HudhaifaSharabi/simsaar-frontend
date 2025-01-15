@@ -58,12 +58,13 @@
 .roomDetails {
   display: flex;
   flex-direction: column;
+  background-color: #F4EFEB;
 }
 
 
 
 .roomDetails h5 {
-  color: #304f4f;
+  color: #253C3C;
 
   margin: 0;
   font-size: 16px;
@@ -73,7 +74,7 @@
 .roomDetails h6 {
   margin: 0;
   font-weight: 400;
-  color: #c1a16a;
+  color: #C1A16A;
 }
 
 .placesContainer {
@@ -106,8 +107,8 @@
 
 
 .placeButton {
-  background: rgba(255, 255, 255, 0);
-  border:#304f4f solid 2px ;
+  background: #253C3C;
+  border: 2px solid #253C3C;
   border-radius: 8px;
   padding: 10px 20px;
   cursor: pointer;
@@ -115,21 +116,22 @@
   white-space: nowrap;
   font-size: 14px;
   margin: 0 auto;
-  color: #ffffff;
+  color: #F4EFEB;
 }
 
 .placeButton:hover {
-  background: #304f4f4d;
+  background: #C1A16A;
+  border-color: #C1A16A;
+  color: #F4EFEB;
   transform: translateY(-2px);
 }
-
 .loadingScreen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: #F4EFEB;
   display: flex;
   justify-content: center;
   align-items: center;
