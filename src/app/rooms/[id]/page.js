@@ -72,8 +72,8 @@ export default function Rooms({ params }) {
 // Booking variables
 const [numberOfRooms, setNumberOfRooms] = useState([]);
 let [value, setValue] = useState({
-  start: today(getLocalTimeZone()),
-  end: today(getLocalTimeZone()).add({days: 1}),
+  start: null,
+  end: null,
 });// State to store the selected date
 const [gustNumber, setGustNumber] = useState([]);
 const [childNumber, setChildNumber] = useState([]);
@@ -142,8 +142,8 @@ const [bookingType, setBookingType] = useState([]);
     //   alert(`Error: ${err.message}`);
     // }
     console.log(`numberOfRooms: ${numberOfRooms}, gustNumber: ${gustNumber}, childNumber: ${childNumber}, bookingType: ${bookingType}, roomsId: ${roomsId}`);
-    console.log("Selected Start Date: ", value.start.format("YYYY-MM-DD"));
-    console.log("Selected End Date: ", value.end.format("YYYY-MM-DD"));
+    console.log("Selected Start Date: ", value.start.toString());
+    console.log("Selected End Date: ", value.end.toString());
   };
   if (loading) {
     return (
