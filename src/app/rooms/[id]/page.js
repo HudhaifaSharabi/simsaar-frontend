@@ -142,8 +142,8 @@ const [bookingType, setBookingType] = useState([]);
     //   alert(`Error: ${err.message}`);
     // }
     console.log(`numberOfRooms: ${numberOfRooms}, gustNumber: ${gustNumber}, childNumber: ${childNumber}, bookingType: ${bookingType}, roomsId: ${roomsId}`);
-    console.log("Selected Start Date: ", value.start.format("YYYY-MM-DD"));
-    console.log("Selected End Date: ", value.end.format("YYYY-MM-DD"));
+    console.log("Selected Start Date: ", value.start);
+    console.log("Selected End Date: ", value.end);
   };
   if (loading) {
     return (
@@ -206,7 +206,7 @@ const [bookingType, setBookingType] = useState([]);
                     {types.map((type) => (
                     <SelectItem
                       value={bookingType}
-                      onChange={(e) => setBookingType(type.label)}
+                      onChange={(e) => setBookingType(e.target.value)}
                       key={type.key}>
                     {type.label}
                     </SelectItem>
