@@ -67,6 +67,15 @@ export default function Rooms({ params }) {
   const [isOpen, setIsOpen] = useState(false);
   let {locale} = useLocale();
 
+
+
+// Booking variables
+const [numberOfRooms, setNumberOfRooms] = useState([]);
+const [date, setDate] = useState([]);
+const [gustNumber, setGustNumber] = useState([]);
+const [childNumber, setChildNumber] = useState([]);
+const [bookingType, setBookingType] = useState([]);
+
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
@@ -116,17 +125,18 @@ export default function Rooms({ params }) {
 
 
   const handleBooking = async () => {
-    try {
-      const response = await fetch(`/api/method/simsaar.api.booking?number_of_rooms=1&room_type=${roomsId}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+    // try {
+    //   const response = await fetch(`/api/method/simsaar.api.booking?number_of_rooms=1&room_type=${roomsId}`, {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
       
-      });
-      if (!response.ok) throw new Error("Booking failed");
-      alert("Booking successful!");
-    } catch (err) {
-      alert(`Error: ${err.message}`);
-    }
+    //   });
+    //   if (!response.ok) throw new Error("Booking failed");
+    //   alert("Booking successful!");
+    // } catch (err) {
+    //   alert(`Error: ${err.message}`);
+    // }
+    console.log(`numberOfRooms: ${numberOfRooms}, date: ${date}, gustNumber: ${gustNumber}, childNumber: ${childNumber}, bookingType: ${bookingType}, roomsId: ${roomsId}`);
   };
   if (loading) {
     return (
@@ -175,23 +185,29 @@ export default function Rooms({ params }) {
               <ModalHeader className="flex flex-col gap-1">احجز الان</ModalHeader>
               <ModalBody>
               <I18nProvider locale="ar-US">
-                <RangeCalendar aria-label="التاريخ (التقويم الميلادي)" isDateUnavailable={isDateUnavailable} />
+                <RangeCalendar  value={date} onChange={(e) => setDate(e.target.value)} aria-label="التاريخ (التقويم الميلادي)" isDateUnavailable={isDateUnavailable} />
               </I18nProvider>
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4 ">
                 <Select  label="اختر فئه" >
                     {types.map((type) => (
-                    <SelectItem  key={type.key}>{type.label}</SelectItem>
+                    <SelectItem
+                      value={bookingType}
+                      onChange={(e) => setBookingType(type.label)}
+                      key={type.key}>
+                    {type.label}
+                    </SelectItem>
                     ))}
                 </Select>
-                    <Input label="عدد الاشخاص" type="number" min={1} />
-                    <Input label="عدد الاطفال" type="number" min={1} />
+                    <Input label="عدد الاشخاص" type="number" min={1} value={gustNumber} onChange={(e) => setGustNumber(e.target.value)}/>
+                    <Input label="عدد الاطفال" type="number" min={1} value={childNumber} onChange={(e) => setChildNumber(e.target.value)} />
+                    <Input label="عدد الغرفٍ" type="number" min={1} value={numberOfRooms} onChange={(e) => setNumberOfRooms(e.target.value)} />
+
                 </div>
                 <div className="flex py-2 px-1 justify-between">
                 <Checkbox color="warning" icon={<HeartIcon />} required>
                     الموافقه على سياسات المكان
                 </Checkbox>
-                 
                 </div>
               </ModalBody>
               <ModalFooter>
