@@ -130,20 +130,18 @@ const [bookingType, setBookingType] = useState([]);
 
 
   const handleBooking = async () => {
-    // try {
-    //   const response = await fetch(`/api/method/simsaar.api.booking?number_of_rooms=1&room_type=${roomsId}`, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
+    try {
+      const response = await fetch(`/api/method/simsaar.api.booking?number_of_rooms=${numberOfRooms}&room_type=${roomsId}&type=${bookingType}&check_in_date=${value.start.toString()}&check_out_date=${value.end.toString()}&gust_number=${gustNumber}&child_number=${childNumber}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
       
-    //   });
-    //   if (!response.ok) throw new Error("Booking failed");
-    //   alert("Booking successful!");
-    // } catch (err) {
-    //   alert(`Error: ${err.message}`);
-    // }
-    console.log(`numberOfRooms: ${numberOfRooms}, gustNumber: ${gustNumber}, childNumber: ${childNumber}, bookingType: ${bookingType}, roomsId: ${roomsId}`);
-    console.log("Selected Start Date: ", value.start.toString());
-    console.log("Selected End Date: ", value.end.toString());
+      });
+      if (!response.ok) throw new Error("Booking failed");
+      alert("Booking successful!");
+    } catch (err) {
+      alert(`Error: ${err.message}`);
+    }
+    
   };
   if (loading) {
     return (
@@ -202,15 +200,16 @@ const [bookingType, setBookingType] = useState([]);
               </I18nProvider>
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4 ">
-                <Select  label="اختر فئه" >
-                    {types.map((type) => (
-                    <SelectItem
-                      value={bookingType}
-                      onChange={(e) => setBookingType(e.target.value)}
-                      key={type.key}>
-                    {type.label}
+                <Select
+                  label="اختر فئه"
+                  value={bookingType} // Set the value to the current selected value
+                  onChange={(e) => setBookingType(e.target.value)} // Update state on change
+                >
+                  {types.map((type) => (
+                    <SelectItem key={type.key} value={type.key}>
+                      {type.label}
                     </SelectItem>
-                    ))}
+                  ))}
                 </Select>
                     <Input label="عدد الاشخاص" type="number" min={1} value={gustNumber} onChange={(e) => setGustNumber(e.target.value)}/>
                     <Input label="عدد الاطفال" type="number" min={1} value={childNumber} onChange={(e) => setChildNumber(e.target.value)} />
