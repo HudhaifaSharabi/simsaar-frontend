@@ -315,7 +315,7 @@ export default function Rooms({ params }) {
                         color="primary"
                         onPress={() => {
                           setIsOpen(true);
-                          setRoomsID(id);
+                          setRoomsID(item.name);
                         }}
                       >
                         حجز الغرفه
