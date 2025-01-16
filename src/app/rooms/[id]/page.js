@@ -311,12 +311,15 @@ export default function Rooms({ params }) {
                       
                       
                       <div className="flex gap-4 items-center mt-3">
-                      <Button  color="primary"
-                            onPress={() => setIsOpen(true) , setRoomsID(id) }
-                          
-                        >
-                          حجز  الغرفه
-                        </Button>
+                      <Button 
+                        color="primary"
+                        onPress={() => {
+                          setIsOpen(true);
+                          setRoomsID(id);
+                        }}
+                      >
+                        حجز الغرفه
+                      </Button>
                         <Link
                           href={`/realView/${item.default_hotspot}/${id}/`} // Adjust the link as needed
 
