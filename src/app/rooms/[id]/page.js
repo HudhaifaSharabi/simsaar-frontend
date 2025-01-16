@@ -191,8 +191,8 @@ const [bookingType, setBookingType] = useState([]);
               <ModalBody>
               <I18nProvider locale="ar-US">
                 <RangeCalendar 
-                  value={selectedRange}
-                  onChange={handleDateChange}
+                  // value={selectedRange}
+                  // onChange={handleDateChange}
                   aria-label="التاريخ (التقويم الميلادي)" 
                   isDateUnavailable={isDateUnavailable} 
                 />
