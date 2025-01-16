@@ -50,11 +50,11 @@ export default function SelectThree(){
                     </li>
                 </ul>
                 
-                <div className="tab-content bg-white rounded-bottom-3 rounded-end-3 sm-rounded-0 shadow">
+                <div className="tab-content bg-white rounded-bottom-3 rounded-end-3 sm-rounded-0 shadow ">
                     {activeIndex === 0 ? 
                         <div className="card border-0 active">
                             <form className="card-body text-end">
-                                <div className="registration-form text-dark text-end">
+                                <div className="registration-form text-dark text-start">
                                     <div className="row g-lg-0">
                                         <div className="col-lg-3 col-md-6 col-12">
                                             <div className="mb-3">

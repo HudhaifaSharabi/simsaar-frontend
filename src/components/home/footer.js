@@ -81,7 +81,7 @@ export default function Footer(){
                     <div className="row">
                         <div className="col">
                             <div className="text-center">
-                                <p className="mb-0">© {new Date().getFullYear()} سمسار. تصميم وتطوير <i className="mdi mdi-heart text-danger"></i>  <Link href="https://shreethemes.in/" target="_blank" className="text-reset">سمسار تكنولوجي</Link>.</p>
+                                <p className="mb-0">© {new Date().getFullYear()} سمسار. تصميم وتطوير  شركة <Link href="https://simsaar.co/" target="_blank" className="text-white">سمسار سوفت</Link>.</p>
                             </div>
                         </div>
                     </div>

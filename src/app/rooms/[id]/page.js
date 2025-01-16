@@ -108,6 +108,27 @@ export default function Rooms({ params }) {
     setCurrentPage(pageNumber);
   };
 
+
+
+
+
+
+
+  const handleBooking = async () => {
+    try {
+      const response = await fetch("/api/resource/Booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          guest_name: "John Doe",
+        }),
+      });
+      if (!response.ok) throw new Error("Booking failed");
+      alert("Booking successful!");
+    } catch (err) {
+      alert(`Error: ${err.message}`);
+    }
+  };
   if (loading) {
     return (
       <div
@@ -178,7 +199,7 @@ export default function Rooms({ params }) {
                 <Button color="danger" variant="flat" onPress={onClose}>
                   اغلاق
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color="primary" onPress={handleBooking}>
                     حجز
                 </Button>
               </ModalFooter>

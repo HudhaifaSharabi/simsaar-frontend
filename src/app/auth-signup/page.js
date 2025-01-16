@@ -28,7 +28,7 @@ export default function Signup() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:88/api/method/simsaar.api.signup?email=${email}&name=${name}&password=${password}&gender=${gender}&phone=${phone}`, {
+      const response = await fetch(`/api/method/simsaar.api.signup?email=${email}&name=${name}&password=${password}&gender=${gender}&phone=${phone}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

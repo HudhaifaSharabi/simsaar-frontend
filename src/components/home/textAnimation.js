@@ -15,7 +15,7 @@ export default function TextAnimation(){
             wrapper="span"
             speed={5}
             repeat={Infinity}
-            className="typewrite text-secondary ms-2"
+            className="typewrite text-secondary"
             cursor={false}
         /> </h4>
     )

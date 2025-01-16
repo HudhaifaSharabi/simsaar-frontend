@@ -43,6 +43,9 @@
 @import "team";
 @import "contact";
 @import "footer";
+.text-white {
+   color: $white !important;
+}
 .text-primary {
    color: #253C3C !important;
 }
