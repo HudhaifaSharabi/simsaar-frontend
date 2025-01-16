@@ -116,7 +116,7 @@ export default function Rooms({ params }) {
 
   const handleBooking = async () => {
     try {
-      const response = await fetch("/api/resource/Booking", {
+      const response = await fetch("/api/method/simsaar.api.signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
