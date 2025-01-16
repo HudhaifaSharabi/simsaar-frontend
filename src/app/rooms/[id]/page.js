@@ -120,7 +120,7 @@ export default function Rooms({ params }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          guest_name: "John Doe",
+          number_of_rooms: "3",
         }),
       });
       if (!response.ok) throw new Error("Booking failed");
