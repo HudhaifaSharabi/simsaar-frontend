@@ -142,8 +142,8 @@ const [bookingType, setBookingType] = useState([]);
     //   alert(`Error: ${err.message}`);
     // }
     console.log(`numberOfRooms: ${numberOfRooms}, gustNumber: ${gustNumber}, childNumber: ${childNumber}, bookingType: ${bookingType}, roomsId: ${roomsId}`);
-    console.log("Selected Start Date: ", value.start);
-    console.log("Selected End Date: ", value.end);
+    console.log("Selected Start Date: ", value.start.format("YYYY-MM-DD"));
+    console.log("Selected End Date: ", value.end.format("YYYY-MM-DD"));
   };
   if (loading) {
     return (
