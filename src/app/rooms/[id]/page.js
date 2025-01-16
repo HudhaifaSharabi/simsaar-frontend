@@ -191,6 +191,8 @@ const [bookingType, setBookingType] = useState([]);
               <ModalBody>
               <I18nProvider locale="ar-US">
                 <RangeCalendar 
+                  color="success"
+                  showMonthAndYearPickers 
                   value={value}
                   onChange={setValue}
                   minValue={today(getLocalTimeZone())}
