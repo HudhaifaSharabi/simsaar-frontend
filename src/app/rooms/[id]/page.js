@@ -71,9 +71,9 @@ export default function Rooms({ params }) {
 
 // Booking variables
 const [numberOfRooms, setNumberOfRooms] = useState([]);
-let [value, setValue] = useState({
-  start: null,
-  end: null,
+const [value, setValue] = useState({
+  start: now,
+  end: now.add({ days: 1 }),
 });// State to store the selected date
 const [gustNumber, setGustNumber] = useState([]);
 const [childNumber, setChildNumber] = useState([]);
