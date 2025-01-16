@@ -116,12 +116,10 @@ export default function Rooms({ params }) {
 
   const handleBooking = async () => {
     try {
-      const response = await fetch("/api/method/simsaar.api.booking", {
+      const response = await fetch("/api/method/simsaar.api.booking?number_of_rooms=1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          number_of_rooms: "3",
-        }),
+      
       });
       if (!response.ok) throw new Error("Booking failed");
       alert("Booking successful!");
