@@ -58,6 +58,7 @@ export default function Rooms({ params }) {
   const { id } = params;
   const globalData = useData();
   const [rooms, setRooms] = useState([]);
+  const [roomsId, setRoomsID] = useState([]);
   const [propertyDetails, setPropertyDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -116,7 +117,7 @@ export default function Rooms({ params }) {
 
   const handleBooking = async () => {
     try {
-      const response = await fetch("/api/method/simsaar.api.booking?number_of_rooms=1", {
+      const response = await fetch(`/api/method/simsaar.api.booking?number_of_rooms=1&room_type=${roomsId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       
@@ -311,7 +312,7 @@ export default function Rooms({ params }) {
                       
                       <div className="flex gap-4 items-center mt-3">
                       <Button  color="primary"
-                            onPress={() => setIsOpen(true)}
+                            onPress={() => setIsOpen(true) , setRoomsID(id) }
                           
                         >
                           حجز  الغرفه
