@@ -71,7 +71,10 @@ export default function Rooms({ params }) {
 
 // Booking variables
 const [numberOfRooms, setNumberOfRooms] = useState([]);
-const [date, setDate] = useState([]);
+const [selectedRange, setSelectedRange] = useState({
+  startDate: null,
+  endDate: null,
+}); // State to store the selected date
 const [gustNumber, setGustNumber] = useState([]);
 const [childNumber, setChildNumber] = useState([]);
 const [bookingType, setBookingType] = useState([]);
@@ -120,8 +123,10 @@ const [bookingType, setBookingType] = useState([]);
 
 
 
-
-
+  const handleDateChange = (range) => {
+    setSelectedRange(range); // Update the selected range state
+    console.log("Selected Range:", range); // Log the selected range (optional)
+  };
 
 
   const handleBooking = async () => {
@@ -185,7 +190,12 @@ const [bookingType, setBookingType] = useState([]);
               <ModalHeader className="flex flex-col gap-1">احجز الان</ModalHeader>
               <ModalBody>
               <I18nProvider locale="ar-US">
-                <RangeCalendar  value={date} onChange={(e) => setDate(e.target.value)} aria-label="التاريخ (التقويم الميلادي)" isDateUnavailable={isDateUnavailable} />
+                <RangeCalendar 
+                  value={selectedRange}
+                  onChange={handleDateChange}
+                  aria-label="التاريخ (التقويم الميلادي)" 
+                  isDateUnavailable={isDateUnavailable} 
+                />
               </I18nProvider>
 
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4 ">
