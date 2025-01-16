@@ -71,8 +71,10 @@ export default function Rooms({ params }) {
 
 // Booking variables
 const [numberOfRooms, setNumberOfRooms] = useState([]);
-let [date, setDate] = React.useState(today(getLocalTimeZone()));
-// State to store the selected date
+let [value, setValue] = useState({
+  start: today(getLocalTimeZone()),
+  end: today(getLocalTimeZone()).add({days: 1}),
+});// State to store the selected date
 const [gustNumber, setGustNumber] = useState([]);
 const [childNumber, setChildNumber] = useState([]);
 const [bookingType, setBookingType] = useState([]);
@@ -189,8 +191,9 @@ const [bookingType, setBookingType] = useState([]);
               <ModalBody>
               <I18nProvider locale="ar-US">
                 <RangeCalendar 
-                  value={date}
-                  onChange={setDate}
+                  value={value}
+                  onChange={setValue}
+                  minValue={today(getLocalTimeZone())}
                   aria-label="التاريخ (التقويم الميلادي)" 
                   isDateUnavailable={isDateUnavailable} 
                 />
