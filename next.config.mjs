@@ -1,13 +1,14 @@
+import withPWA from 'next-pwa';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ["simsaarerp.net"],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "simsaarerp.net",
-        port: "",
-        pathname: "/**",
+        protocol: 'https',
+        hostname: 'simsaarerp.net',
+        pathname: '/**',
       },
     ],
   },
@@ -15,14 +16,24 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://simsaarerp.net//api/:path*', // Frappe API endpoint
+        destination: 'https://simsaarerp.net/api/:path*',
       },
       {
         source: '/files/:path*',
-        destination: 'https://simsaarerp.net//files/:path*', // Frappe files endpoint
+        destination: 'https://simsaarerp.net/files/:path*',
       },
     ];
   },
 };
 
-export default nextConfig;
+const pwaConfig = {
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+  fallbacks: {
+    document: '/offline.html',
+  },
+};
+
+export default withPWA(pwaConfig)(nextConfig);

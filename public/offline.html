@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أنت غير متصل</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Cairo', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
+      color: #111827;
+      padding: 2rem;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 480px;
+      padding: 2rem;
+      border-radius: 1rem;
+      background-color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: #f97316;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📡</div>
+    <h1>أنت غير متصل</h1>
+    <p>يبدو أنك فقدت الاتصال بالإنترنت.<br />يرجى التحقق من الشبكة والمحاولة مرة أخرى.</p>
+    <a href="/" class="btn">إعادة المحاولة</a>
+  </div>
+</body>
+</html>
