@@ -351,7 +351,7 @@ const [bookingType, setBookingType] = useState([]);
                         حجز الغرفه
                       </Button>
                         <Link
-                          href={`/realView/${item.default_hotspot}/${id}/`} // Adjust the link as needed
+                          href={`/realView/${id}/${item.name}/`} // Adjust the link as needed
 
                           
                         >
