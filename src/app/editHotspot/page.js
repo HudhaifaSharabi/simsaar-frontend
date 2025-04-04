@@ -1,4 +1,4 @@
-import HotspotEditor from "@/components/HotspotEditor";
+import HotspotEditor from "@/components/Tour360/editViewer";
 export default function RoomPage({ params }) {
 
   return (
