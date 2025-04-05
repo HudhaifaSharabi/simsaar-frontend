@@ -2242,8 +2242,8 @@ const faceTransforms = {
 };
 
 const faceKeys = ['r', 'l', 'u', 'd', 'f', 'b'];
-const maxLevel = 3;
-const levelDivisionsMap = { 1: 1, 2: 2, 3: 4 };
+const maxLevel = 4;
+const levelDivisionsMap = { 1: 1, 2: 2, 3: 4, 4: 8, };
 
 // ---------------------
 // Hotspot Component
@@ -2524,7 +2524,7 @@ function Room({ room, savedCameraQuaternion, onRoomSwitch, roomId, facilitiesId 
     async function enhanceSequentially() {
       for (let level = 1; level <= maxLevel; level++) {
         await Promise.all(faceKeys.map(face => improveOneLevel(face)));
-        console.log(`Completed enhancement to level ${level} for all faces`);
+        // console.log(`Completed enhancement to level ${level} for all faces`);
       }
     }
     enhanceSequentially();
@@ -2564,7 +2564,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
   const apiCalledRef = useRef(false);
 
   // Helper: animate zoom in with blur effect.
-  const animateZoomInWithBlur = (camera, container, targetFov, duration = 2000) => {
+  const animateZoomInWithBlur = (camera, container, targetFov, duration = 1000) => {
     return new Promise((resolve) => {
       const initialFov = camera.fov;
       const delta = targetFov - initialFov;
@@ -2598,10 +2598,10 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
     
     const loadRooms = async () => {
       try {
-        console.log("Fetching rooms for roomId:", roomId);
+        // console.log("Fetching rooms for roomId:", roomId);
         const response = await fetch(`/api/method/simsaar.api.get_hotspot?placeId=${roomId}`);
         const result = await response.json();
-        console.log("API response:", result);
+        // console.log("API response:", result);
 
         if (!response.ok) {
           throw new Error(result.message || "Failed to fetch room data");
