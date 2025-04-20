@@ -52,4 +52,7 @@ export default withPWA({
     },
     ...runtimeCaching,
   ],
+  fallback: {
+    document: '/offline.html', // ✅ الصفحة التي تظهر عند فقدان الاتصال
+  },
 })(baseConfig);
