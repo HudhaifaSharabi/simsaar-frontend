@@ -27,6 +27,24 @@
 
 // export default nextConfig;
 // next.config.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// next.config.js
 import withPWA from 'next-pwa';
 import runtimeCaching from 'next-pwa/cache.js';
 
@@ -57,49 +75,29 @@ const baseConfig = {
   },
 };
 
-export default withPWA({
-  ...baseConfig,
-  pwa: {
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-    disable: process.env.NODE_ENV === 'development',
-
-    runtimeCaching: [
-      // ✅ تخزين دائم لصور الـ tiles
-      {
-        urlPattern: /^\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'tile-images',
-          expiration: {
-            maxEntries: 1000,
-            maxAgeSeconds: 60 * 60 * 24 * 365, // سنة
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
+// ✅ إعدادات PWA توضع هنا فقط
+const pwaConfig = {
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+  runtimeCaching: [
+    {
+      urlPattern: /^\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'tile-images',
+        expiration: {
+          maxEntries: 500,
+          maxAgeSeconds: 60 * 60 * 24 * 30, // 30 يوم
+        },
+        cacheableResponse: {
+          statuses: [0, 200],
         },
       },
+    },
+    ...runtimeCaching,
+  ],
+};
 
-      // ✅ تخزين صور من simsaarerp.net
-      {
-        urlPattern: /^https:\/\/simsaarerp\.net\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'remote-tile-images',
-          expiration: {
-            maxEntries: 1000,
-            maxAgeSeconds: 60 * 60 * 24 * 365,
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-
-      // ✅ باقي الملفات العامة مثل manifest والـ fonts
-      ...runtimeCaching,
-    ],
-  },
-});
+export default withPWA(pwaConfig)(baseConfig);
