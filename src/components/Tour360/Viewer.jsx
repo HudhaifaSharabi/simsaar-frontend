@@ -3919,6 +3919,7 @@ function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch,
         tileMeshesRef.current[faceKey + '_level'] = 0;
       });
       setInitialized(true);
+      setPreviewReady(true);
      
     };
 
@@ -4094,6 +4095,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
   const apiCalledRef = useRef(false);
   const [showOverlay, setShowOverlay] = useState(true);
   const savedCameraDirection = useRef(null);
+  const [previewReady, setPreviewReady] = useState(false);
 
   /**
    * Zoom-with-blur animation.
@@ -4253,7 +4255,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
     return (
       <ErrorScreen error={error} onRetry={() => window.location.reload()} />
     );
-  if (!currentRoom) return <LoadingScreen />;
+    if (!currentRoom || !previewReady) return <LoadingScreen />;
 
 //save showOverlay in  sessionStorage
   const handleOverlayClick = () => {
@@ -4271,102 +4273,102 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
           onClose={() => setOfflineAlertVisible(false)}
         />
       )}
-{showOverlay && (
-  <div
-    onClick={handleOverlayClick}
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backdropFilter: 'blur(12px)',
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
-      zIndex: 9999,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '20px',
-      cursor: 'pointer',
-      animation: 'fadeIn 0.6s ease-in-out',
-      color: '#fff',
-
-    }}
-  >
-    <style>{`
-      @keyframes fadeIn {
-        from { opacity: 0 }
-        to { opacity: 1 }
-      }
-    `}</style>
-
-    <div style={{
-      maxWidth: '560px',
-      width: '100%',
-      backgroundColor: 'rgba(255, 255, 255, 0.4)',
-      border: '1px solid rgba(255,255,255,0.15)',
-      padding: '36px 32px',
-      borderRadius: '20px',
-      textAlign: 'center',
-      color: '#fff',
-      backdropFilter: 'blur(6px)',
-      boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
-    }}>
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: '20px'
-      }}>
-        <img
-          src="/images/360.png"
-          alt="360° Icon"
+      {showOverlay && (
+        <div
+          onClick={handleOverlayClick}
           style={{
-            width: 80,
-            height: 'auto'
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backdropFilter: 'blur(12px)',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            zIndex: 9999,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '20px',
+            cursor: 'pointer',
+            animation: 'fadeIn 0.6s ease-in-out',
+            color: '#fff',
+
           }}
-        />
-      </div>
+        >
+          <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0 }
+              to { opacity: 1 }
+            }
+          `}</style>
 
-      <h2 style={{
-        fontSize: '26px',
-        fontWeight: 600,
-        marginBottom: '12px',
-        color: '#fff',
+          <div style={{
+            maxWidth: '560px',
+            width: '100%',
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            border: '1px solid rgba(255,255,255,0.15)',
+            padding: '36px 32px',
+            borderRadius: '20px',
+            textAlign: 'center',
+            color: '#fff',
+            backdropFilter: 'blur(6px)',
+            boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '20px'
+            }}>
+              <img
+                src="/images/360.png"
+                alt="360° Icon"
+                style={{
+                  width: 80,
+                  height: 'auto'
+                }}
+              />
+            </div>
 
-      }}>
-        دليل استخدام الجولة التفاعلية
-      </h2>
-      <p style={{
+            <h2 style={{
+              fontSize: '26px',
+              fontWeight: 600,
+              marginBottom: '12px',
               color: '#fff',
 
-  fontSize: '18px',
-  opacity: 0.9,
-  lineHeight: '1.8',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '12px'
-}}>
-  <span>✦ اسحب الشاشة لتدوير المشهد</span>
+            }}>
+              دليل استخدام الجولة التفاعلية
+            </h2>
+            <p style={{
+                    color: '#fff',
 
-  <span style={{
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-    direction: 'rtl',
-  }}>
- 
-    <span>انقر على الدوائر البيضاء او حولها للتنقل داخل الغرفه✦</span>
-  </span>
+        fontSize: '18px',
+        opacity: 0.9,
+        lineHeight: '1.8',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '12px'
+      }}>
+        <span>✦ اسحب الشاشة لتدوير المشهد</span>
 
-  <span>✦ اضغط في أي مكان للبدء</span>
-</p>
+        <span style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          direction: 'rtl',
+        }}>
+      
+          <span>انقر على الدوائر البيضاء او حولها للتنقل داخل الغرفه✦</span>
+        </span>
 
-    </div>
-  </div>
-)}
+        <span>✦ اضغط في أي مكان للبدء</span>
+      </p>
+
+          </div>
+        </div>
+      )}
 
 
       <Canvas
@@ -4387,8 +4389,9 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
           roomId={roomId}
           facilitiesId={facilitiesId}
           savedCameraQuaternion={savedCameraQuaternion}
-          savedCameraDirection={savedCameraDirection} // ✅ add this line
+          savedCameraDirection={savedCameraDirection}
           onRoomSwitch={handleRoomSwitch}
+          setPreviewReady={setPreviewReady}
         />
         <HotspotRaycaster onHotspotClick={handleRoomSwitch} />
       </Canvas>
