@@ -3817,7 +3817,7 @@ function HotspotRaycaster({ onHotspotClick }) {
 
       let nearestHotspot = null;
       let minDistance = Infinity;
-      const THRESHOLD = 1.2; // world units
+      const THRESHOLD = 1; // world units
 
       for (const hotspot of hotspots) {
         const worldPos = new THREE.Vector3();
@@ -4066,6 +4066,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
   const controlsRef = useRef();
   const canvasContainerRef = useRef();
   const apiCalledRef = useRef(false);
+  const [showOverlay, setShowOverlay] = useState(true);
 
   /**
    * Zoom-with-blur animation.
@@ -4213,6 +4214,8 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
         controls.domElement.removeEventListener('wheel', handleWheel);
       };
     }
+    const seen = sessionStorage.getItem("seenTourGuide");
+    if (seen) setShowOverlay(false);
   }, []);
 
   if (error)
@@ -4221,6 +4224,11 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
     );
   if (!currentRoom) return <LoadingScreen />;
 
+//save showOverlay in  sessionStorage
+  const handleOverlayClick = () => {
+    setShowOverlay(false);
+    sessionStorage.setItem("seenTourGuide", "yes");
+  };
   return (
     <div 
       ref={canvasContainerRef} 
@@ -4232,6 +4240,120 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
           onClose={() => setOfflineAlertVisible(false)}
         />
       )}
+{showOverlay && (
+  <div
+    onClick={handleOverlayClick}
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backdropFilter: 'blur(12px)',
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      zIndex: 9999,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '20px',
+      cursor: 'pointer',
+      animation: 'fadeIn 0.6s ease-in-out',
+    }}
+  >
+    <style>{`
+      @keyframes fadeIn {
+        from { opacity: 0 }
+        to { opacity: 1 }
+      }
+    `}</style>
+
+    <div style={{
+      maxWidth: '560px',
+      width: '100%',
+      backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      border: '1px solid rgba(255,255,255,0.15)',
+      padding: '36px 32px',
+      borderRadius: '20px',
+      textAlign: 'center',
+      color: '#fff',
+      backdropFilter: 'blur(6px)',
+      boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
+    }}>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: '20px'
+      }}>
+        <img
+          src="/images/360.png"
+          alt="360° Icon"
+          style={{
+            width: 80,
+            height: 'auto'
+          }}
+        />
+      </div>
+
+      <h2 style={{
+        fontSize: '26px',
+        fontWeight: 600,
+        marginBottom: '12px',
+      }}>
+        دليل استخدام الجولة التفاعلية
+      </h2>
+      <p style={{
+  fontSize: '18px',
+  opacity: 0.9,
+  lineHeight: '1.8',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '12px'
+}}>
+  <span>✦ اسحب الشاشة لتدوير المشهد</span>
+
+  <span style={{
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+    direction: 'rtl',
+  }}>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="30"
+        stroke="white"
+        strokeWidth="8"
+        fill="none"
+        opacity="0.6"
+      />
+      <circle
+        cx="50"
+        cy="50"
+        r="20"
+        fill="black"
+        opacity="0"
+      />
+    </svg>
+    <span>انقر على النقاط البيضاء  للتنقل داخل الغرفه✦</span>
+  </span>
+
+  <span>✦ اضغط في أي مكان للبدء</span>
+</p>
+
+    </div>
+  </div>
+)}
+
+
       <Canvas
         style={{ width: '100%', height: '100%', background: '#000' }}
         camera={{ position: [1, 0, 1], fov: 75, near: 0.1, far: 1000 }}
