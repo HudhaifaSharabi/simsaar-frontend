@@ -4000,6 +4000,7 @@ function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch,
               material.opacity = 1;
               loaded++;
               if (loaded === total) {
+                // ✅ استبدل فقط إذا تم تحميل كل الصور بنجاح
                 faceGroupRef.current.remove(oldGroup);
                 faceGroupRef.current.add(newGroup);
                 currentTileMeshes[targetFace + '_group'] = newGroup;
@@ -4010,19 +4011,30 @@ function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch,
               }
             },
             undefined,
-            () => {
+            (error) => {
+              console.warn(`❌ Failed to load tile: ${url}`, error);
+              // ❌ لا تزيل oldGroup، خلي العرض يستمر على آخر مستوى متاح
               loaded++;
               if (loaded === total) {
-                faceGroupRef.current.remove(oldGroup);
-                faceGroupRef.current.add(newGroup);
-                currentTileMeshes[targetFace + '_group'] = newGroup;
-                currentTileMeshes[targetFace + '_level'] = nextLevel;
-                newGroup.visible = true;
-                newGroup.updateMatrixWorld();
+                // فقط استخدم newGroup إذا كانت بعض الصور وصلت بنجاح
+                const hasVisibleTiles = newGroup.children.some(
+                  (child) => child.material.map
+                );
+                if (hasVisibleTiles) {
+                  faceGroupRef.current.remove(oldGroup);
+                  faceGroupRef.current.add(newGroup);
+                  currentTileMeshes[targetFace + '_group'] = newGroup;
+                  currentTileMeshes[targetFace + '_level'] = nextLevel;
+                  newGroup.visible = true;
+                  newGroup.updateMatrixWorld();
+                } else {
+                  console.warn(`⚠️ Keeping oldGroup for face ${targetFace} due to failed tiles.`);
+                }
                 resolve();
               }
             }
           );
+          
         }
       }
     });
@@ -4234,7 +4246,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
     const seen = sessionStorage.getItem("seenTourGuide");
     if (seen) setShowOverlay(false);
 
-    
+
   }, []);
 
   if (error)
