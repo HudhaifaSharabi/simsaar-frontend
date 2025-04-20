@@ -1,3 +1,39 @@
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   images: {
+//     domains: ["localhost","simsaarerp.net"],
+//     remotePatterns: [
+//       {
+//         protocol: "https",
+//         hostname: "simsaarerp.net",
+//         port: "",
+//         pathname: "/**",
+//       },
+//     ],
+//   },
+//   async rewrites() {
+//     return [
+//       {
+//         source: '/api/:path*',
+//         destination: 'https://simsaarerp.net/api/:path*', // Frappe API endpoint
+//       },
+//       {
+//         source: '/files/:path*',
+//         destination: 'https://simsaarerp.net/files/:path*', // Frappe files endpoint
+//       },
+//     ];
+//   },
+// };
+
+// export default nextConfig;
+
+
+
+
+
+
+
+// next.config.mjs
 import withPWA from 'next-pwa';
 import runtimeCaching from 'next-pwa/cache.js';
 
@@ -28,7 +64,7 @@ const baseConfig = {
   },
 };
 
-export default withPWA({
+const pwaConfig = {
   dest: 'public',
   register: true,
   skipWaiting: true,
@@ -50,9 +86,7 @@ export default withPWA({
     },
     ...runtimeCaching,
   ],
+  // ✅ أزل fallback لأن next-pwa لا تدعمه هنا
+};
 
-  // ✅ هنا الطريقة الصحيحة
-  workboxOpts: {
-    navigateFallback: '/offline.html', // هذا هو المطلوب
-  },
-})(baseConfig);
+export default withPWA(pwaConfig)(baseConfig);
