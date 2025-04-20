@@ -26,14 +26,7 @@
 // };
 
 // export default nextConfig;
-
-
-
-
-
-
-
-// next.config.mjs
+// next.config.js
 import withPWA from 'next-pwa';
 import runtimeCaching from 'next-pwa/cache.js';
 
@@ -64,29 +57,49 @@ const baseConfig = {
   },
 };
 
-const pwaConfig = {
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
-  runtimeCaching: [
-    {
-      urlPattern: /^\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'tile-images',
-        expiration: {
-          maxEntries: 500,
-          maxAgeSeconds: 60 * 60 * 24 * 30,
-        },
-        cacheableResponse: {
-          statuses: [0, 200],
+export default withPWA({
+  ...baseConfig,
+  pwa: {
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === 'development',
+
+    runtimeCaching: [
+      // ✅ تخزين دائم لصور الـ tiles
+      {
+        urlPattern: /^\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'tile-images',
+          expiration: {
+            maxEntries: 1000,
+            maxAgeSeconds: 60 * 60 * 24 * 365, // سنة
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
         },
       },
-    },
-    ...runtimeCaching,
-  ],
-  // ✅ أزل fallback لأن next-pwa لا تدعمه هنا
-};
 
-export default withPWA(pwaConfig)(baseConfig);
+      // ✅ تخزين صور من simsaarerp.net
+      {
+        urlPattern: /^https:\/\/simsaarerp\.net\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'remote-tile-images',
+          expiration: {
+            maxEntries: 1000,
+            maxAgeSeconds: 60 * 60 * 24 * 365,
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      },
+
+      // ✅ باقي الملفات العامة مثل manifest والـ fonts
+      ...runtimeCaching,
+    ],
+  },
+});
