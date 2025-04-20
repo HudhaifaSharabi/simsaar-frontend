@@ -3851,7 +3851,7 @@ function HotspotRaycaster({ onHotspotClick }) {
 // ---------------------
 // Room Component
 // ---------------------
-function Room({ room, savedCameraQuaternion, onRoomSwitch, roomId, facilitiesId }) {
+function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch, roomId, facilitiesId }) {
   const faceGroupRef = useRef();
   const tileMeshesRef = useRef({});
   const currentRoomVersionRef = useRef(0);
@@ -3919,17 +3919,31 @@ function Room({ room, savedCameraQuaternion, onRoomSwitch, roomId, facilitiesId 
         tileMeshesRef.current[faceKey + '_level'] = 0;
       });
       setInitialized(true);
-      if (savedCameraQuaternion.current) {
-        camera.quaternion.copy(savedCameraQuaternion.current);
-        camera.updateMatrixWorld();
-      }
+     
     };
 
     previewImage.onerror = (error) => {
       console.error('Error loading preview image:', error);
     };
   }, [room, roomId, facilitiesId, savedCameraQuaternion, camera]);
-
+  useEffect(() => {
+    if (!initialized) return;
+  
+    // 1. Restore using direction vector
+    if (savedCameraDirection.current) {
+      const dir = savedCameraDirection.current.clone();
+      const newTarget = camera.position.clone().add(dir);
+      camera.lookAt(newTarget);
+      camera.updateMatrixWorld();
+    }
+  
+    // 2. Fallback (optional): use quaternion if direction is not available
+    else if (savedCameraQuaternion.current) {
+      camera.quaternion.copy(savedCameraQuaternion.current);
+      camera.updateMatrixWorld();
+    }
+  }, [initialized, camera, savedCameraQuaternion]);
+  
   // Function to improve one face by one level.
   // It loads the detailed tiles for the next level for that face.
   const improveOneLevel = useCallback((targetFace) => {
@@ -4067,6 +4081,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
   const canvasContainerRef = useRef();
   const apiCalledRef = useRef(false);
   const [showOverlay, setShowOverlay] = useState(true);
+  const savedCameraDirection = useRef(null);
 
   /**
    * Zoom-with-blur animation.
@@ -4214,8 +4229,12 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
         controls.domElement.removeEventListener('wheel', handleWheel);
       };
     }
+    //save showOverlay in  sessionStorage
+
     const seen = sessionStorage.getItem("seenTourGuide");
     if (seen) setShowOverlay(false);
+
+    
   }, []);
 
   if (error)
@@ -4259,6 +4278,8 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
       padding: '20px',
       cursor: 'pointer',
       animation: 'fadeIn 0.6s ease-in-out',
+      color: '#fff',
+
     }}
   >
     <style>{`
@@ -4300,10 +4321,14 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
         fontSize: '26px',
         fontWeight: 600,
         marginBottom: '12px',
+        color: '#fff',
+
       }}>
         دليل استخدام الجولة التفاعلية
       </h2>
       <p style={{
+              color: '#fff',
+
   fontSize: '18px',
   opacity: 0.9,
   lineHeight: '1.8',
@@ -4320,30 +4345,8 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
     gap: '10px',
     direction: 'rtl',
   }}>
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 100 100"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        cx="50"
-        cy="50"
-        r="30"
-        stroke="white"
-        strokeWidth="8"
-        fill="none"
-        opacity="0.6"
-      />
-      <circle
-        cx="50"
-        cy="50"
-        r="20"
-        fill="black"
-        opacity="0"
-      />
-    </svg>
-    <span>انقر على النقاط البيضاء  للتنقل داخل الغرفه✦</span>
+ 
+    <span>انقر على الدوائر البيضاء او حولها للتنقل داخل الغرفه✦</span>
   </span>
 
   <span>✦ اضغط في أي مكان للبدء</span>
@@ -4372,6 +4375,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
           roomId={roomId}
           facilitiesId={facilitiesId}
           savedCameraQuaternion={savedCameraQuaternion}
+          savedCameraDirection={savedCameraDirection} // ✅ add this line
           onRoomSwitch={handleRoomSwitch}
         />
         <HotspotRaycaster onHotspotClick={handleRoomSwitch} />
