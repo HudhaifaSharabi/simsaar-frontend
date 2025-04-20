@@ -3851,7 +3851,7 @@ function HotspotRaycaster({ onHotspotClick }) {
 // ---------------------
 // Room Component
 // ---------------------
-function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch, roomId, facilitiesId,  setPreviewReady }) {
+function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch, roomId, facilitiesId }) {
   const faceGroupRef = useRef();
   const tileMeshesRef = useRef({});
   const currentRoomVersionRef = useRef(0);
@@ -3919,7 +3919,6 @@ function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch,
         tileMeshesRef.current[faceKey + '_level'] = 0;
       });
       setInitialized(true);
-      setPreviewReady(true);
      
     };
 
@@ -4095,7 +4094,6 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
   const apiCalledRef = useRef(false);
   const [showOverlay, setShowOverlay] = useState(true);
   const savedCameraDirection = useRef(null);
-  const [previewReady, setPreviewReady] = useState(false);
 
   /**
    * Zoom-with-blur animation.
@@ -4255,7 +4253,7 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
     return (
       <ErrorScreen error={error} onRetry={() => window.location.reload()} />
     );
-    if (!currentRoom || !previewReady) return <LoadingScreen />;
+  if (!currentRoom) return <LoadingScreen />;
 
 //save showOverlay in  sessionStorage
   const handleOverlayClick = () => {
@@ -4389,9 +4387,8 @@ export default function TileGridViewer({ roomId, facilitiesId }) {
           roomId={roomId}
           facilitiesId={facilitiesId}
           savedCameraQuaternion={savedCameraQuaternion}
-          savedCameraDirection={savedCameraDirection}
+          savedCameraDirection={savedCameraDirection} // ✅ add this line
           onRoomSwitch={handleRoomSwitch}
-          setPreviewReady={setPreviewReady}
         />
         <HotspotRaycaster onHotspotClick={handleRoomSwitch} />
       </Canvas>
