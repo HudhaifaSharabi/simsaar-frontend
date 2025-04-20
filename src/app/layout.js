@@ -21,10 +21,15 @@ const league = Tajawal({
   weight: ["300", "500"],
   variable: "--font-league",
 });
-
 export const metadata = {
   title: "سمسار",
-  description: "سمسار",
+  description: "جولة 360 تفاعلية داخل العقارات",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icons/icon-192.png",
+    shortcut: "/favicon.ico",
+    apple: "/icons/icon-512.png",
+  },
 };
 
 export default function RootLayout({ children }) {
