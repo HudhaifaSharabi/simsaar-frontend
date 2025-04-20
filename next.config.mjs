@@ -42,13 +42,9 @@
 
 
 
-
-
-// next.config.js
 import withPWA from 'next-pwa';
 import runtimeCaching from 'next-pwa/cache.js';
 
-/** @type {import('next').NextConfig} */
 const baseConfig = {
   images: {
     domains: ['localhost', 'simsaarerp.net'],
@@ -71,11 +67,14 @@ const baseConfig = {
         source: '/files/:path*',
         destination: 'https://simsaarerp.net/files/:path*',
       },
+      {
+        source: '/tiles/:path*',
+        destination: 'https://simsaar.co/tiles/:path*',
+      },
     ];
   },
 };
 
-// ✅ إعدادات PWA توضع هنا فقط
 const pwaConfig = {
   dest: 'public',
   register: true,
@@ -86,10 +85,24 @@ const pwaConfig = {
       urlPattern: /^\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
       handler: 'CacheFirst',
       options: {
-        cacheName: 'tile-images',
+        cacheName: 'tiles-via-rewrite',
         expiration: {
           maxEntries: 500,
-          maxAgeSeconds: 60 * 60 * 24 * 30, // 30 يوم
+          maxAgeSeconds: 60 * 60 * 24 * 365,
+        },
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
+      },
+    },
+    {
+      urlPattern: /^https:\/\/simsaar\.co\/tiles\/.*\.(jpg|jpeg|png|webp|gif|svg)$/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'external-tile-images',
+        expiration: {
+          maxEntries: 500,
+          maxAgeSeconds: 60 * 60 * 24 * 365,
         },
         cacheableResponse: {
           statuses: [0, 200],
