@@ -3851,7 +3851,7 @@ function HotspotRaycaster({ onHotspotClick }) {
 // ---------------------
 // Room Component
 // ---------------------
-function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch, roomId, facilitiesId }) {
+function Room({ room, savedCameraQuaternion, savedCameraDirection, onRoomSwitch, roomId, facilitiesId,  setPreviewReady }) {
   const faceGroupRef = useRef();
   const tileMeshesRef = useRef({});
   const currentRoomVersionRef = useRef(0);
