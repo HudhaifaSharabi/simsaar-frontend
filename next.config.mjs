@@ -1,4 +1,3 @@
-// next.config.js
 import withPWA from 'next-pwa';
 import runtimeCaching from 'next-pwa/cache.js';
 
@@ -29,7 +28,6 @@ const baseConfig = {
   },
 };
 
-// ✅ الآن ندمج إعدادات PWA هنا
 export default withPWA({
   dest: 'public',
   register: true,
@@ -43,7 +41,7 @@ export default withPWA({
         cacheName: 'tile-images',
         expiration: {
           maxEntries: 500,
-          maxAgeSeconds: 60 * 60 * 24 * 30, // 30 يوم
+          maxAgeSeconds: 60 * 60 * 24 * 30,
         },
         cacheableResponse: {
           statuses: [0, 200],
@@ -52,7 +50,9 @@ export default withPWA({
     },
     ...runtimeCaching,
   ],
-  fallback: {
-    document: '/offline.html', // ✅ الصفحة التي تظهر عند فقدان الاتصال
+
+  // ✅ هنا الطريقة الصحيحة
+  workboxOpts: {
+    navigateFallback: '/offline.html', // هذا هو المطلوب
   },
 })(baseConfig);
