@@ -98,8 +98,8 @@ export default function Home() {
                 <div className="col-12">
                   <div className="title-heading">
                     <TextAnimation />
-                    <p className="para-desc text-white title-dark mb-0">
-                      مرحبًا بكم في جولة الغرف التفاعلية
+                    <p className="para-desc text-white0 title-dark mb-0">
+                      رؤيتك الكامله قبل قرارك النهائي 
                     </p>
                   </div>
                 </div>
